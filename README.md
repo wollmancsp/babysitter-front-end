@@ -1,3 +1,18 @@
+This is a repository to hold our capstone project - a babysitter finder application.
+
+Patch Notes: Angular
+
+-0.9: Phil -Created the base Angular setup. This currently can read JSON from the back end and repost it to the front end. --Does not yet work front-end to back-end -This is still boilerplate code. This is meant to get things running, not yet actively representing our babysitter app.
+
+Angular v0.9.1: Oct 7, 2024
+-Did mostly GUI work. Planning on connecting users to JSON test in DB tomorrow
+-Added proper navigation, including nav bar, signin & register pages, and profile page
+--Note that I'm having an issue getting images to load via the assets folder. Check the forms tomorrow
+-Still have some organizing to do with the scss files.
+-Planning 1.0.0 Angular Release to include all base pages. Until then, staying on 0.9.*
+
+
+
 # TestAngApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.

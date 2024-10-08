@@ -1,0 +1,59 @@
+<div>
+  <div>
+    <div>
+      <!-- @if (authenticationError()) {
+        <div class="alert alert-danger" data-cy="loginError">
+          <strong>Failed to sign in!</strong> Please check your credentials and try again.
+        </div>
+      } -->
+      <fieldset class="fieldsetClass">
+        <h1 data-cy="loginTitle" class="signInClass">Sign in</h1>
+
+        <form class="form"> <!-- (ngSubmit)="login()" [formGroup]="loginForm" -->
+          <div>
+            <label class="labelClass labelUsername" for="username">Username</label>
+            <input
+              type="text"
+              class="InputField inputUsername"
+              name="username"
+              id="username"
+              placeholder="Your username"
+              formControlName="username"
+              #username
+              data-cy="username"
+            />
+          </div>
+
+          <div>
+            <label class="labelClass labelPassword" for="password">Password</label>
+            <input
+              class="InputField inputPassword"
+              name="password"
+              id="password"
+              placeholder="Your password"
+              formControlName="password"
+              data-cy="password"
+            />
+          </div>
+          
+          <div class="form-check">
+            <label class="form-check-label" for="rememberMe">
+              <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+              <span>Remember me</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-cy="submit">Sign in</button>
+          <div class="mt-3 alert alert-warning">
+              <a class="alert-link" routerLink="/account/reset/request" data-cy="forgetYourPasswordSelector">Did you forget your password?</a>
+          </div>
+
+          <div>
+            <span>You don&apos;t have an account yet? </span>
+            <a class="clickableLink" routerLink="/register">Register a new account</a>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<nav data-cy="navbar" class="navbar">
+    <ul class="mainUL">
+        <li>
+            <a class="navTitle" routerLink="/" (click)="collapseNavbar()">
+                <span class="navbar-title">Babysitter App </span>
+                <span>{{ version }}</span>
+            </a>
+        </li>
+        <li>
+            <!-- Beg of Main Search Tabs -->
+            <ul>
+                <li>
+                    <a routerLink="/" (click)="collapseNavbar()">
+                        <span>
+                            <fa-icon icon="home"></fa-icon>
+                            <span> Home</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/" (click)="collapseNavbar()">
+                        <span>
+                            <fa-icon icon="magnifying-glass"></fa-icon>
+                            <span> Search Babysitters</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/" (click)="collapseNavbar()">
+                        <span>
+                            <fa-icon icon="user-plus"></fa-icon>
+                            <span> Become a Babysitter</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <!-- End of Main Search Tabs -->
+        </li>
+        <li>
+            <a class="navSignIn" routerLink="/login" (click)="collapseNavbar()">
+                <span>
+                    <span>Sign in</span>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a class="navSignIn" routerLink="/profile" (click)="collapseNavbar()">
+                <span>
+                    <fa-icon icon="user"></fa-icon>
+                    <span> Profile</span>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a class="navSignIn" routerLink="/inbox" (click)="collapseNavbar()">
+                <span>
+                    <fa-icon icon="envelope"></fa-icon>
+                    <span> Inbox</span>
+                </span>
+            </a>
+        </li>
+    </ul> 
+</nav>
+  

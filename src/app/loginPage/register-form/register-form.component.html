@@ -1,0 +1,97 @@
+<div>
+  <div>
+    <div>
+      <!-- @if (authenticationError()) {
+        <div class="alert alert-danger" data-cy="loginError">
+          <strong>Failed to sign in!</strong> Please check your credentials and try again.
+        </div>
+      } -->
+      <fieldset class="fieldsetClass">
+        <h1 data-cy="loginTitle" class="signInClass">Register</h1>
+
+        <form class="form"> <!-- (ngSubmit)="login()" [formGroup]="loginForm" -->
+          <div>
+            <label class="labelClass labelUsername" for="username">Username</label>
+            <input
+              type="text"
+              class="InputField inputUsername"
+              name="username"
+              id="username"
+              placeholder="Your username"
+              formControlName="username"
+              #username
+              data-cy="username"
+            />
+          </div>
+
+          <div>
+            <label class="labelClass labelPassword" for="password">Password</label>
+            <input
+              class="InputField inputPassword"
+              name="password"
+              id="password"
+              placeholder="Your password"
+              formControlName="password"
+              data-cy="password"
+            />
+          </div>
+
+          <div>
+            <label class="labelClass labelEmail" for="email">Email</label>
+            <input
+              class="InputField inputEmail"
+              name="email"
+              id="email"
+              placeholder="Your email"
+              formControlName="email"
+              data-cy="email"
+            />
+          </div>
+
+          <div>
+            <label class="labelClass labelFirstName" for="firstName">First Name</label>
+            <input
+              class="InputField inputFirstName"
+              name="firstName"
+              id="firstName"
+              placeholder="Your first name"
+              formControlName="firstName"
+              data-cy="firstName"
+            />
+          </div>
+
+          <div>
+            <label class="labelClass labelLastName" for="lastName">Last Name</label>
+            <input
+              class="InputField inputLastName"
+              name="lastName"
+              id="lastName"
+              placeholder="Your last name"
+              formControlName="lastName"
+              data-cy="lastName"
+            />
+          </div>
+
+          <div>
+            <label class="labelClass labelAddress" for="address">Address</label>
+            <input
+              class="InputField inputAddress"
+              name="address"
+              id="address"
+              placeholder="Your address"
+              formControlName="address"
+              data-cy="address"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-cy="submit">Sign Up</button>
+
+          <div class="">
+            <span>Already have an account? </span>
+            <a class="" routerLink="">Sign in now!</a>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+</div>
