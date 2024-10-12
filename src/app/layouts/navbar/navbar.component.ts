@@ -30,14 +30,9 @@ export default class NavbarComponent implements OnInit {
     this.isNavbarCollapsed.set(true);
   }
 
-  // login(): void {
-  //   this.router.navigate(['/login']);
-  // }
-
   logout(): void {}
 
   toggleNavbar(): void {
     this.isNavbarCollapsed.update(isNavbarCollapsed => !isNavbarCollapsed);
-    // /console.log("NavCCollapsed : " + this.isNavbarCollapsed);
   }
 }

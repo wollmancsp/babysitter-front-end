@@ -1,3 +1,15 @@
+/*
+  Organized Alphabetically: Please try to keep it this way
+*/
+
+/*##### Beginning of Top Navigation Bar Styles #####*/
+
+
+/*##### Beginning of Element Selectors #####*/
+/*##### End of Element Selectors #####*/
+  
+  
+/*##### Beginning of Class Selectors #####*/
 .fieldsetClass {
     margin-left: 25%;
     width: 50%;
@@ -12,8 +24,14 @@
     grid-template-rows: auto; /* Height */ 
 }
 
-.signInClass {
-	grid-area: signinLabel;
+.InputField{
+	margin: 0px 0.5vw;
+	box-sizing: border-box;
+	width: 100%;//30vw;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 10px;
+	background-color: #E0E0E0;
 }
 
 .labelClass {
@@ -24,12 +42,10 @@
     text-align: left;
 }
 
-.InputField{
-	margin: 0px 0.5vw;
-	box-sizing: border-box;
-	width: 100%;//30vw;
-	padding: 10px;
-	border: 2px solid black;
-	border-radius: 10px;
-	background-color: #E0E0E0;
+.signInClass {
+	grid-area: signinLabel;
 }
+/*##### End of Class Selectors #####*/
+  
+  
+/*##### End of Top Navigation Bar Styles #####*/

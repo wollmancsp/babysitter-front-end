@@ -1,0 +1,36 @@
+<div>
+  <div class="mainGrid">
+    <div>
+      <ul>
+        <li *ngFor="let chat of chat_list"> 
+          <div class="chatGUIBox" (click)="selectTabComponent(chat.chat_id)">
+            <img src="\speechBubbleMessage.png" alt = ""/>
+            <p>Chat that seems to go on forever.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="vl"></div>
+
+    <div class="outerMessageBox">
+      <div class="temp">
+        <div class="noChatLoaded" *ngIf="chatSelectedID === -1;"><h2>Click to load a chat!</h2></div>
+        <ul class="innerMessageBox">
+          <li *ngFor="let message of chat_list[chatSelectedID].messages_array"> 
+            <div class="messageBox">
+              <img src="\speechBubbleMessage.png" alt = ""/>
+              <h5>
+                Name Name
+              </h5>
+              <p class="messageTime">{{ message.message_time }}</p>
+              <p class="messageText">{{ message.message_text }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <textarea title="messageTextField" class="messageTextField"></textarea>
+
+  </div>
+</div>

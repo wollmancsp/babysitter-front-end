@@ -1,0 +1,194 @@
+/*
+  Organized Alphabetically: Please try to keep it this way
+*/
+
+/*##### Beginning of Profile Page Styles #####*/
+
+
+/*##### Beginning of Element Selectors #####*/
+button {
+	background-color: #dcdcdc;
+	border: 2px solid #555555;
+	color: black;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+img {
+	width: 200px;
+	height: 200px;
+}
+/*##### End of Element Selectors #####*/
+
+
+/*##### Beginning of Class Selectors #####*/
+.aboutMeSection {
+	margin: 20px;
+}
+
+.aboutMeParagraph {
+	padding-bottom: 18px;
+}
+
+.addressClass {
+	margin-left: 50%;
+	margin-bottom: 5px;
+}
+
+.averageRating {
+	display: block;
+	float: right;
+	text-align: center;
+	width: 50%;
+	margin: 0;
+	padding: 0;
+}
+
+.detailsList{
+	display: grid;
+    gap: 15px 10px;
+    grid-template-columns: 50% 50%; /* Width */  
+    grid-template-rows: auto; /* Height */ 
+}
+
+.detailsList p{
+	margin: 0;
+	padding: 0;
+}
+
+.friendButton {
+	display: block;
+}
+
+.headerFormatting {
+    width: 100%;
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: 33% 34% 33%; /* Width */  
+    grid-template-rows: 15pc; /* Height */ 
+}
+
+.mainPageTextDiv {
+	width: 100%;
+}
+
+.mainPageTextHeader {
+	text-align: center;
+	font-size: 3.5pc;
+}
+
+.messageButton {
+	display: inline;
+	margin-bottom: 50px;
+}
+
+.numberOfRatings {
+	display: block;
+	text-align: center;
+	width: 50%;
+	margin: 0;
+	float: left;
+}
+
+.outerSplit {
+	width: 70pc;
+	max-width: 100%;
+	background-color: rgb(233, 233, 233);
+	margin: auto;
+}
+
+.perHour {
+	font-size: 12px;
+	display: inline;
+}
+
+.priceDiv {
+	margin-bottom: 20px;
+	margin-right: 50%;
+}
+
+.priceTag { 
+	display: inline;
+	sup {
+		font-size: 12px; 
+	}
+	strong {
+		font-size: 24px; 
+	}
+}
+
+.posAbsDiv {
+	position: absolute;
+	bottom: 0;
+}
+
+.posRelDiv {
+	position: relative
+}
+
+.reviewBlock {
+	width: 15pc;
+	height: 20pc;
+	display: inline-block;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none;
+	border: 2px black;
+	border-style: solid;
+	margin: 5px;
+	white-space: wrap;
+}
+
+.reviewBlockStars {
+	font-size: 1.5pc;
+}
+
+.score {
+	font-size: 2pc;
+	text-align: center;
+	margin: auto;
+}
+
+.scoreMainDiv {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.scoreSummary {
+	width: 100%;
+}
+
+.scoringDetails {
+    width: 100%;
+    display: grid;
+    gap: 10px 10px;
+    grid-template-columns: 20% 60% 20%; /* Width */  
+    grid-template-rows: 10pc; /* Height */ 
+}
+
+.scrollMenu {
+	background-color: #c3c3c3;
+	overflow: scroll;
+	white-space: nowrap;
+}
+
+.starsDiv {
+	text-align: center;
+	font-size: 3pc;
+}
+/*##### End of Class Selectors #####*/
+
+
+/*##### End of Top Navigation Bar Styles #####*/

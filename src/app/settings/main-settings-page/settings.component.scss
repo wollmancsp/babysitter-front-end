@@ -1,0 +1,57 @@
+/*
+  Organized Alphabetically: Please try to keep it this way
+*/
+
+/*##### Beginning of Top Navigation Bar Styles #####*/
+
+
+/*##### Beginning of Element Selectors #####*/
+li {
+  border: 2px solid #555555;
+	color: black;
+  background-color: #dedede;
+	margin: 2px 2px;
+	border-radius: 2px;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+li a:hover {
+  background-color: #909090;
+}
+
+ul {
+  list-style-type: none;
+  margin: 1rem;
+  padding: 0;
+  max-width: 175px;
+  text-align: center;
+}
+/*##### End of Element Selectors #####*/
+  
+  
+/*##### Beginning of Class Selectors #####*/
+.tabPageGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 15% 1% 83%; /* Width */  
+  grid-template-rows: auto; /* Height */ 
+}
+
+.vl {
+  border-left: 2px solid black;
+  height: auto;
+  min-height: 93vh;
+  width: 0px;
+}
+/*##### End of Class Selectors #####*/
+  
+  
+/*##### End of Top Navigation Bar Styles #####*/

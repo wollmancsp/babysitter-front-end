@@ -12,17 +12,12 @@ import { RegisterService } from '../register-service/register-service.service';
 })
 export class RegisterFormComponent implements OnInit { 
 
-  //users: User[];
   constructor(
     private route: ActivatedRoute, 
       private router: Router, 
       private registerService: RegisterService) {
-    //this.user = new User();
   }
 
   ngOnInit() {
-    // this.loginService.findAll().subscribe(data => {
-    //   //this.users = data;
-    // });
   }
 }

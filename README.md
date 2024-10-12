@@ -11,6 +11,15 @@ Angular v0.9.1: Oct 7, 2024
 -Still have some organizing to do with the scss files.
 -Planning 1.0.0 Angular Release to include all base pages. Until then, staying on 0.9.*
 
+Angular v0.9.2: Oct 12, 2024
+-Did more GUI work, added Home, Settings, Become/Add A Babysitter pages
+--Added inner components to Settins: Messages, Profile, Settings
+---Settings, Become/Add A Babysitter are blank pages right now
+-Added Messaging:
+--Currently only loads from the DB/Backend works. Will add sends next
+--Users are not logged in yet, but IDs are pulled. Need to finish that to pull proper data
+
+
 
 
 # TestAngApp

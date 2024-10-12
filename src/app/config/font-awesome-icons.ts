@@ -4,7 +4,8 @@ import {
     faMagnifyingGlass,
     faUserPlus,
     faUser,
-    faEnvelope
+    faEnvelope,
+    faGear
   } from '@fortawesome/free-solid-svg-icons';
   
   export const fontAwesomeIcons = [
@@ -13,6 +14,7 @@ import {
     faMagnifyingGlass,
     faUserPlus,
     faUser,
-    faEnvelope
+    faEnvelope,
+    faGear
   ];
   
