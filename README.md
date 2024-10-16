@@ -20,6 +20,8 @@ Angular v0.9.2: Oct 12, 2024
 --Users are not logged in yet, but IDs are pulled. Need to finish that to pull proper data
 
 
+Angular v0.9.2.1: Oct 12, 2024
+-Added profile creation via user Registration page
 
 
 # TestAngApp
