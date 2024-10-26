@@ -24,6 +24,6 @@ export class SettingsComponent implements OnInit {
 
   protected selectTabComponent(componentSelected: number): void {
     this.selectorNum = componentSelected;
-    console.log("Num: " + this.selectorNum);
+    // console.log("Num: " + this.selectorNum);
   }
 }

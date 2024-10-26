@@ -9,6 +9,7 @@ import { FABabysitterComponent } from './babysitter/find-a-babysitter/faBabysitt
 import { BABabysitterComponent } from './babysitter/become-a-babysitter/baBabysitter.component';
 import { SettingsComponent } from './settings/main-settings-page/settings.component';
 import { UserSettingsComponent } from './settings/user-settings/user-settings.component';
+import { AdminComponent } from './admin/admin-page/admin.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'becomeBabysitter', component: BABabysitterComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'userSettings', component: UserSettingsComponent },
+  { path: 'admin', component: AdminComponent },
   { path: '', loadComponent: () => import('./layouts/navbar/navbar.component'), outlet: 'navbar'}
 ];
 

@@ -8,4 +8,6 @@ export class User {
     user_address: string;
     user_city: string;
     user_zip: string;
+    user_password: string;
+    user_role: boolean;
 }

@@ -36,21 +36,32 @@
             </ul>
             <!-- End of Main Search Tabs -->
         </li>
-        <li>
-            <a class="navSignIn" routerLink="/login" (click)="collapseNavbar()">
-                <span>
-                    <span>Sign in</span>
-                </span>
-            </a>
-        </li>
-        <li>
-            <a class="navSignIn" routerLink="/settings" (click)="collapseNavbar()">
-                <span>
-                    <fa-icon icon="gear"></fa-icon>
-                    <span> Settings</span>
-                </span>
-            </a>
-        </li>
+        @if (account() === null) {
+            <li>
+                <a class="navSignIn" routerLink="/login" (click)="collapseNavbar()">
+                    <span>
+                        <span>Sign in</span>
+                    </span>
+                </a>
+            </li>
+        }
+        @if (account() !== null) {
+            <li>
+                <a class="navSignIn" routerLink="" (click)="collapseNavbar()">
+                    <span>
+                        <span (click)="logOut()">Logout</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a class="navSignIn" routerLink="/settings" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="gear"></fa-icon>
+                        <span> Settings</span>
+                    </span>
+                </a>
+            </li>
+        }
         <li>
             <a class="navSignIn" routerLink="/inbox" (click)="collapseNavbar()">
                 <span>
@@ -59,6 +70,16 @@
                 </span>
             </a>
         </li>
+        @if (account()?.user_role) {
+            <li>
+                <a class="navSignIn" routerLink="/admin" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="lock"></fa-icon>
+                        <span> Admin</span>
+                    </span>
+                </a>
+            </li>
+        }
     </ul> 
 </nav>
   

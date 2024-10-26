@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VERSION } from '../../app.constants';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgIf } from '@angular/common';
+import { AccountService } from '../../user/account-service/account-service.service';
 
 @Component({
   standalone: true,
@@ -18,6 +19,8 @@ export default class NavbarComponent implements OnInit {
   version = '';
 
   private router = inject(Router);
+  accService = inject(AccountService);
+  account = this.accService.trackCurrentUser();
 
   constructor(
     
@@ -28,6 +31,10 @@ export default class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  logOut(): void {
+    this.accService.logout();
+  }
 
   collapseNavbar(): void {
     this.isNavbarCollapsed.set(true);

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { User } from '../model/user';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RegisterService } from '../register-service/register-service.service';
-import { User } from '../user-class/user';
+import { User } from '../../user/model/user';
 
 @Component({
   selector: 'app-register-form',

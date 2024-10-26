@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, signal, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login-service/login-service.service';
+import { LoginRequest } from '../login-request-class/login-request';
+import { AccountService } from '../../user/account-service/account-service.service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,6 +13,12 @@ import { LoginService } from '../login-service/login-service.service';
 })
 export class LoginFormComponent implements OnInit { 
 
+  @ViewChild('myEmail') myEmail: ElementRef;
+  @ViewChild('myPassword') myPassword: ElementRef;
+
+  authenticationError = signal(false);
+  accService = inject(AccountService);
+
   constructor(
     private route: ActivatedRoute, 
       private router: Router, 
@@ -20,7 +28,20 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  temp(): void {
-
+  protected submitLogin(): void {
+    var loginReq = new LoginRequest(this.myEmail.nativeElement.value, this.myPassword.nativeElement.value);
+    this.loginService.submitLogin(loginReq).subscribe(data => {
+      // console.log("Log: " + data);
+      this.authenticationError.set(false);
+      if(data != null) {
+        this.accService.saveUser(data);
+        if (!this.router.getCurrentNavigation()) {
+          // There were no routing during login (eg from navigationToStoredUrl)
+          this.router.navigate(['']);
+        }
+      }else {
+        this.authenticationError.set(true)
+      }
+    });
   }
 }

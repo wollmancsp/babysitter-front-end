@@ -5,7 +5,8 @@ import {
     faUserPlus,
     faUser,
     faEnvelope,
-    faGear
+    faGear,
+    faLock
   } from '@fortawesome/free-solid-svg-icons';
   
   export const fontAwesomeIcons = [
@@ -15,6 +16,7 @@ import {
     faUserPlus,
     faUser,
     faEnvelope,
-    faGear
+    faGear,
+    faLock
   ];
   

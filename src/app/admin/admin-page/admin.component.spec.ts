@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FABabysitterComponent } from './faBabysitter.component';
+import { AdminComponent } from './admin.component';
 
-describe('FABabysitterComponent', () => {
-  let component: FABabysitterComponent;
-  let fixture: ComponentFixture<FABabysitterComponent>;
+describe('AdminPageComponent', () => {
+  let component: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FABabysitterComponent]
+      declarations: [AdminComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FABabysitterComponent);
+    fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

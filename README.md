@@ -19,9 +19,14 @@ Angular v0.9.2: Oct 12, 2024
 --Currently only loads from the DB/Backend works. Will add sends next
 --Users are not logged in yet, but IDs are pulled. Need to finish that to pull proper data
 
-
 Angular v0.9.2.1: Oct 12, 2024
 -Added profile creation via user Registration page
+
+Angular v0.9.3: 
+-Login/out officially working.
+-Basic Admin Page Template Generated
+-Messaging updated so can send/recieve messages better
+--Note: Still need to add auto refreshes to recieve exterior messages & Fix Chat Box Selections.
 
 
 # TestAngApp

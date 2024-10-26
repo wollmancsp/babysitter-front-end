@@ -1,3 +1,7 @@
+.alert {
+	color: red;
+}
+
 .clickableLink {
 	text-decoration: underline;
 }
@@ -44,11 +48,11 @@
 	background-color: #E0E0E0;
 }
 
-.labelUsername {
+.labelEmail {
 	grid-area: usernameLabel;
 }
 
-.inputUsername {
+.inputEmail {
 	grid-area: usernameInput;
 }
 
