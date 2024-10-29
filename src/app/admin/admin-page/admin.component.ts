@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { AdminService } from '../admin-service/admin-service.service';
+import { User } from '../../user/model/user';
+import { AccountService } from '../../user/account-service/account-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,6 +14,10 @@ import { AdminService } from '../admin-service/admin-service.service';
 })
 export class AdminComponent implements OnInit {
 
+  userList: User[];
+  accService = inject(AccountService);
+  account = this.accService.trackCurrentUser();
+
   constructor(
     private route: ActivatedRoute, 
       private router: Router, 
@@ -19,6 +25,8 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.adminService.getAllUsers().subscribe(data => {
+      this.userList = data;
+    });
   }
 }

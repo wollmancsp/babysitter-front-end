@@ -8,6 +8,8 @@ export class User {
     user_address: string;
     user_city: string;
     user_zip: string;
+    parent_id: number;
+    sitter_id: number;
     user_password: string;
     user_role: boolean;
 }

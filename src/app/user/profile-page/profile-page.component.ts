@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProfileService } from '../profile-page-service/profile-page.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { User } from '../model/user';
+import { AccountService } from '../account-service/account-service.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -13,6 +14,7 @@ import { User } from '../model/user';
 })
 export class ProfilePageComponent implements OnInit {
 
+  //##### Beg of Profile Variables #####
   protected firstName = "Phillip";
   protected lastName = "Benson";
 
@@ -32,6 +34,10 @@ export class ProfilePageComponent implements OnInit {
   protected prefChildAge = "3 - 10 y/o";
   protected hasPetsTF = "true";
   protected aboutMeDesc = "Hello, my name is Phillip, and I'm a 21 year old who is willing to take care of kids during the weekends. I would also be willing to cook for the kids for an extra fee. Foods include...";
+  //##### End of Profile Variables #####
+
+  accService = inject(AccountService);
+  account = this.accService.trackCurrentUser();
 
   users: User[];
   constructor(
@@ -41,18 +47,5 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.profileService.findAll().subscribe(data => {
-      this.users = data;
-      this.firstName = this.users[0].user_fname;
-      this.lastName = this.users[0].user_lname;
-      this.addressLine1 = this.users[0].user_address;
-      this.addressLine2 = this.users[0].user_city + " " + this.users[0].user_zip;
-      this.phoneNumber = this.users[0].user_phone;
-      this.email = this.users[0].user_emailaddress;
-    });
-  }
-
-  temp(): void {
-
   }
 }
