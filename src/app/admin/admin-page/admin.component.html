@@ -1,0 +1,36 @@
+<div>
+  @if (account()?.user_role === true) {
+    <table>
+      <tr>
+        <th>User ID</th>
+        <th>User Email</th>
+        <th>User First & Last</th>
+        <th>Promote to Admin?</th>
+        <th>Delete?</th>
+      </tr>
+      <!-- <tr>
+        <td>1</td>
+        <td>testE&#64;mail.com</td>
+        <td>John Doe</td>
+        <td><Button>X</Button></td>
+        <td><Button>X</Button></td>
+      </tr> -->
+      <tr *ngFor="let user of userList">
+        <td>{{user.user_id}}</td>
+        <td>{{user.user_emailaddress}}</td>
+        <td>{{user.user_fname + " " + user.user_lname}}</td>
+        <td>
+          @if (user.user_role === true) {
+            Admin
+          } @else if (user.user_role === false || user.user_role === null){
+            <Button>Promote</Button>
+          }
+        </td>
+        <td><Button>X</Button></td>
+      </tr>
+    </table>
+  }
+  @else if (account()?.user_role === false || account()?.user_role === null){
+    You have been logged out. Please login first.
+  }
+</div>

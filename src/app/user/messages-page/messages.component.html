@@ -1,0 +1,36 @@
+<div>
+  <div class="mainGrid">
+    <div>
+      <ul>
+        <li *ngFor="let chat of chat_list"> 
+          <div class="chatGUIBox" (click)="selectTabComponent(chat.chat_id)">
+            <img src="\speechBubbleMessage.png" alt = ""/>
+            <p>{{ getChatUserNames(chat.chat_id) }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="vl"></div>
+
+    <div class="outerMessageBox">
+      <div class="temp">
+        <div class="noChatLoaded" *ngIf="chatSelectedID === -1;"><h2>Click to load a chat!</h2></div>
+        <ul class="innerMessageBox" *ngIf="chatSelectedID !== -1;">
+          <li *ngFor="let message of chat_list[chatSelectedID].messages_array"> 
+            <div class="messageBox">
+              <img src="\speechBubbleMessage.png" alt = ""/>
+              <h5>
+                {{ getUserNameFromID(message.user_id) }}
+              </h5>
+              <p class="messageTime">{{ message.message_time }}</p>
+              <p class="messageText">{{ message.message_text }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <textarea title="messageTextField" class="messageTextField" (keydown)="submitMessage($event)" #myTextarea></textarea>
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div>
+  <h1>Find A Babysitter</h1>
+
+  <div class="outerMessageBox">
+    <div class="noAddressLoaded" *ngIf="citySearch === null;"><h2>Click to load a chat!</h2></div>
+    <ul class="innerMessageBox" *ngIf="citySearch !== null;">
+      <li *ngFor="let box of babysitterResultsList"> 
+        <div class="babysitterBox">
+          <img src="\speechBubbleMessage.png" alt = ""/>
+          <div class="profileTextBox">
+            <h5>First Last</h5>
+            <p class="addressLine">Address Line 1</p>
+            <p class="addressLine">Address Line 2</p>
+            <p class="wages">Hourly / Daily</p>
+          </div>
+          <div></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

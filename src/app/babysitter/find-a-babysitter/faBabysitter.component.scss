@@ -1,0 +1,70 @@
+/*
+  Organized Alphabetically: Please try to keep it this way
+*/
+
+/*##### Beginning of Top Navigation Bar Styles #####*/
+
+
+/*##### Beginning of Element Selectors #####*/
+ul {
+	list-style-type: none;
+}
+/*##### End of Element Selectors #####*/
+  
+  
+/*##### Beginning of Class Selectors #####*/
+.innerMessageBox {
+	// margin: -1% 0px;
+	margin: 1% 0;
+	width: 94%;
+	// max-height: 98%;
+	//height: 50%;
+	//min-height: 77%;
+	flex-direction: column;
+	// overflow: scroll;
+}
+
+.babysitterBox {
+	min-height: 10vh;
+	img {
+		height: 16vh;
+		width: height;
+    margin-left: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+	}
+	border: 2px solid #555555;
+	color: black;
+	background-color: #dedede;
+	margin: 5px 0px;
+	border-radius: 2px;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 33% 50% 17%;
+  grid-template-rows: aut0;
+}
+
+.wages {
+	text-overflow: clip;
+	overflow: hidden;
+}
+
+.profileTextBox {
+}
+
+.addressLine {
+}
+
+.noAddressLoaded {
+	height: 50%;
+	text-align: center;
+}
+
+.outerMessageBox {
+  margin: auto;
+}
+/*##### End of Class Selectors #####*/
+  
+  
+/*##### End of Top Navigation Bar Styles #####*/

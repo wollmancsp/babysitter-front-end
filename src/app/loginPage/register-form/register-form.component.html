@@ -1,0 +1,76 @@
+<div>
+  <fieldset class="fieldsetClass">
+    <h1 class="signInClass">Register</h1>
+
+    <form class="form" (ngSubmit)="onSubmit()">
+      <div>
+        <label class="labelClass labelEmail" for="email">Email</label>
+        <input
+        type="text"
+        [(ngModel)]="user.user_emailaddress"
+        class="InputField inputEmail"
+          placeholder="Your email"
+          name="email"
+          title="email"
+        />
+      </div>
+
+      <div>
+        <label class="labelClass labelPassword" for="password">Password</label>
+        <input
+        type="text"
+          [(ngModel)]="user.user_password"
+          class="InputField inputPassword"
+          name="password"
+          placeholder="Your password"
+        />
+      </div>
+
+      <div>
+        <label class="labelClass labelEmail" for="phone">Phone</label>
+        <input
+        type="text"
+        [(ngModel)]="user.user_phone"
+          class="InputField inputEmail"
+          name="phone"
+          placeholder="Your phone"
+        />
+      </div>
+
+      <div>
+        <label class="labelClass labelFirstName" for="firstName">First Name</label>
+        <input
+        type="text"
+          [(ngModel)]="user.user_fname"
+          class="InputField inputFirstName"
+          name="firstName"
+          placeholder="Your first name"
+        />
+      </div>
+
+      <div>
+        <label class="labelClass labelLastName" for="lastName">Last Name</label>
+        <input
+        type="text"
+          [(ngModel)]="user.user_lname"
+          class="InputField inputLastName"
+          name="lastName"
+          placeholder="Your last name"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Sign Up</button>
+
+      <div class="">
+        <span>Already have an account? </span>
+        <a class="" routerLink="">Sign in now!</a>
+      </div>
+    </form>
+  </fieldset>
+
+  @if (authenticationError()) {
+    <div class="alert">
+      <strong>Failed to sign in!</strong> Invalid email or password.
+    </div>
+  }
+</div>

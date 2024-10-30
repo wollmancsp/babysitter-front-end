@@ -1,0 +1,65 @@
+.alert {
+	color: red;
+}
+
+.clickableLink {
+	text-decoration: underline;
+}
+.clickableLink:hover {
+	color: hotpink;
+}
+.clickableLink:visited {
+	color: blue;
+}
+
+.fieldsetClass {
+    margin-left: 25%;
+    width: 50%;
+    text-align: center;
+}
+
+.form {
+    width: 100%;
+    display: grid;
+    gap: 20px 0px;
+    grid-template-columns: auto; /* Width */  
+    grid-template-rows: auto; /* Height */ 
+}
+
+.signInClass {
+	grid-area: signinLabel;
+}
+
+.labelClass {
+	margin: 0px 0.5vw;
+	font-size: 24px;
+	color: #000000;
+    display: block;
+    text-align: left;
+}
+
+.InputField{
+	margin: 0px 0.5vw;
+	box-sizing: border-box;
+	width: 100%;//30vw;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 10px;
+	background-color: #E0E0E0;
+}
+
+.labelEmail {
+	grid-area: usernameLabel;
+}
+
+.inputEmail {
+	grid-area: usernameInput;
+}
+
+.labelPassword {
+	grid-area: passwordLabel;
+}
+
+.inputPassword {
+	grid-area: passwordInput;
+}

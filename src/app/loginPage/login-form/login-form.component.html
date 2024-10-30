@@ -1,0 +1,44 @@
+<div>
+  <fieldset class="fieldsetClass">
+    <h1 class="signInClass">Sign in</h1>
+
+    <form class="form" name="loginForm">
+      <div>
+        <label class="labelClass labelEmail" for="loginEmail">Email</label>
+        <input
+          type="text"
+          class="InputField inputEmail"
+          name="email"
+          placeholder="Your email"
+          id="loginEmail"
+          #myEmail
+        />
+      </div>
+
+      <div>
+        <label class="labelClass labelPassword" for="loginPass">Password</label>
+        <input
+        type="text"
+          class="InputField inputPassword"
+          name="password"
+          placeholder="Your password"
+          id="loginPass"
+          #myPassword
+        />
+      </div>
+
+      @if (authenticationError()) {
+        <div class="alert">
+          <strong>Failed to sign in!</strong> Invalid email or password.
+        </div>
+      }
+
+      <button type="button" class="" (click)="submitLogin()">Sign in</button>
+
+      <div>
+        <span>You don&apos;t have an account yet? </span>
+        <a class="clickableLink" routerLink="/register">Register a new account</a>
+      </div>
+    </form>
+  </fieldset>
+</div>

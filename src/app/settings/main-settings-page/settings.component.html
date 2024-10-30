@@ -1,0 +1,29 @@
+<div class="tabPageGrid">
+  <div>
+    <ul>
+      <li>
+        <a (click)="selectTabComponent(0)">Your Profile</a>
+      </li>
+      <li>
+        <a (click)="selectTabComponent(1)">Messages</a>
+      </li>
+      <li>
+        <a (click)="selectTabComponent(2)">Settings</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="vl"></div>
+
+  <div>
+    <div *ngIf="selectorNum === 0;">
+      <app-profile-page></app-profile-page>
+    </div>
+    <div *ngIf="selectorNum === 1;">
+      <app-messages></app-messages>
+    </div>
+    <div *ngIf="selectorNum === 2;">
+      <app-user-settings></app-user-settings>
+    </div>
+  </div>
+</div>
