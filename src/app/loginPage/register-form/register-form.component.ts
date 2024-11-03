@@ -12,24 +12,23 @@ import { AccountService } from '../../user/account-service/account-service.servi
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RegisterFormComponent implements OnInit { 
+export class RegisterFormComponent implements OnInit {
 
   user: User;
   authenticationError = signal(false);
   accService = inject(AccountService);
 
   constructor(
-    private route: ActivatedRoute, 
-      private router: Router, 
+    private route: ActivatedRoute,
+      private router: Router,
       private registerService: RegisterService,
       private loginService: LoginService) {
         this.user = new User();
         this.user.user_address = "-";
         this.user.user_city = "-";
         this.user.user_zip = "-";
-        this.user.parent_id = -1;
-        this.user.sitter_id = -1;
         this.user.user_role = false;
+        this.user.user_enabled = true;
   }
 
   onSubmit() {
