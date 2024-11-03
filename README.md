@@ -34,6 +34,11 @@ Angular v0.9.3.1:
 -User object can be passed around website, implemented in user profile & navbar so far
 -Find a babysitter partial template added.
 
+Angular v0.9.3.2:
+-Fixed Messaging so it displays everything correctly, as well as refreshes/updates chat.
+--TODO: Start chat (Via another User's Profile)
+--TODO: Fix Subscription Overload causing Backend shutdown.
+
 
 
 # TestAngApp
