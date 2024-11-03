@@ -24,10 +24,7 @@ export class RegisterFormComponent implements OnInit {
       private registerService: RegisterService,
       private loginService: LoginService) {
         this.user = new User();
-        this.user.user_address = "-";
-        this.user.user_city = "-";
-        this.user.user_zip = "-";
-        this.user.user_role = false;
+        this.user.user_role = false; //Non-Admin
         this.user.user_enabled = true;
   }
 
