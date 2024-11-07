@@ -19,7 +19,7 @@
             <p class="addressLine">{{ box.user_city }} {{ box.user_zip }}</p>
             <p class="wages">Hourly / Daily</p>
           </div>
-          <div></div>
+          <div><a [routerLink]="['/profile', box.user_id]"><button>View Profile</button></a></div>
         </div>
       </li>
     </ul>

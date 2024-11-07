@@ -78,6 +78,11 @@ export class MessagesComponent implements OnInit {
     }, 5000);
   }
 
+  ngOnDestroy() {
+      //this.subscription.unsubscribe();
+      //this.subscription2.unsubscribe();
+  }
+
   refreshData() {
     console.log("Refresh");
     // if(this.subscription2 !== undefined)

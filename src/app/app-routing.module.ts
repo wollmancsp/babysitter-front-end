@@ -14,11 +14,11 @@ import { AdminComponent } from './admin/admin-page/admin.component';
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'profile', component: ProfilePageComponent },
+  { path: 'profile/:id', component: ProfilePageComponent },
   { path: '', component: HomeComponent },
   { path: 'findBabysitter', component: FABabysitterComponent },
   { path: 'becomeBabysitter', component: BABabysitterComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings/:id', component: SettingsComponent },
   { path: 'userSettings', component: UserSettingsComponent },
   { path: 'admin', component: AdminComponent },
   { path: '', loadComponent: () => import('./layouts/navbar/navbar.component'), outlet: 'navbar'}
