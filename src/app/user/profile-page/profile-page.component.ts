@@ -41,16 +41,19 @@ export class ProfilePageComponent implements OnInit {
     let acc = this.account();
     if(acc !== null) {
       this.profileService.createNewChat(acc.user_id.toString(), this.viewedAccountNumber.toString()).subscribe(data => {
-        if (!this.router.getCurrentNavigation()) {
-          this.router.navigate(['settings/1']);
-        }
+        var returnData = data;
       });
+      if (!this.router.getCurrentNavigation()) {
+        this.router.navigate(['settings', 1]);
+      }
     }else {
       this.createChatError = signal(true);
     }
   }
 
   createNewTransaction() {
-
+    if (!this.router.getCurrentNavigation()) {
+      this.router.navigate(['scheduleATransaction']);
+    }
   }
 }

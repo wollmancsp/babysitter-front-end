@@ -15,25 +15,25 @@ import {ProfileService} from "../../user/profile-page-service/profile-page.servi
 })
 export class SettingsComponent implements OnInit {
 
-  protected selectorNum: Number;
+  protected selectorNum: number;
 
   constructor(private route: ActivatedRoute,
               private ref: ChangeDetectorRef) {
     this.route.params.subscribe( params => {
-      this.selectorNum = params['id'];
+      this.selectorNum = Number(params['id']);
     });
   }
 
   ngOnInit() {
   }
 
-  protected selectTabComponent(componentSelected: Number): void {
+  protected selectTabComponent(componentSelected: number): void {
     // this.ref.detectChanges();
     this.selectorNum = componentSelected;
     // console.log("Num: " + this.selectorNum);
   }
 
-  protected protectedInit(one: Number): void {
+  protected protectedInit(one: number): void {
     // this.ref.detectChanges();
     this.selectorNum = one;
   }

@@ -10,6 +10,7 @@ import { BABabysitterComponent } from './babysitter/become-a-babysitter/baBabysi
 import { SettingsComponent } from './settings/main-settings-page/settings.component';
 import { UserSettingsComponent } from './settings/user-settings/user-settings.component';
 import { AdminComponent } from './admin/admin-page/admin.component';
+import {ScheduleATransactionComponent} from "./babysitter/schedule-a-transaction/schedule-a-transaction.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'findBabysitter', component: FABabysitterComponent },
   { path: 'becomeBabysitter', component: BABabysitterComponent },
+  { path: 'scheduleATransaction', component: ScheduleATransactionComponent },
   { path: 'settings/:id', component: SettingsComponent },
   { path: 'userSettings', component: UserSettingsComponent },
   { path: 'admin', component: AdminComponent },

@@ -35,7 +35,7 @@ export class ProfileService {
       .set('p1', userID1)
       .set('p2', userID2);
 
-    return this.http.post<Boolean>(`${this.messageUrl}/MessageCreate`,params);
+    return this.http.post<Boolean>(`${this.messageUrl}/ChatCreate`,params);
 
     // var myMap = new Map();
     // myMap.set('1', 'value1');
