@@ -4,10 +4,26 @@
   <div>
     <form>
       <div>
-        <label class="\" for="StartDate">Start Date</label>
-        <input type="datetime-local" class="" #myEmail/>
+        <label class="\" for="StartDate">Start Date: </label>
+        <input type="datetime-local" class="" id="StartDate" #myStartDate/>
       </div>
 
+      <div>
+        <label class="\" for="EndDate">End Date: </label>
+        <input type="datetime-local" class="" id="EndDate" #myEndDate/>
+      </div>
+
+      <div>
+        <label class="\" for="Pay">Pay: </label>
+        <input type="number" class="" id="Pay" #myPay/>
+      </div>
+
+      <div>
+        <label class="\" for="Details">Other Details: </label>
+        <textarea type="text" class="" id="Details" #myDetails></textarea>
+      </div>
+
+      <button type="button" (click)="submitTransactions()">Submit</button>
     </form>
   </div>
 </div>

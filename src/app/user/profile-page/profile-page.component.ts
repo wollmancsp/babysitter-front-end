@@ -53,7 +53,7 @@ export class ProfilePageComponent implements OnInit {
 
   createNewTransaction() {
     if (!this.router.getCurrentNavigation()) {
-      this.router.navigate(['scheduleATransaction']);
+      this.router.navigate(['scheduleATransaction', this.viewedAccountNumber]);
     }
   }
 }

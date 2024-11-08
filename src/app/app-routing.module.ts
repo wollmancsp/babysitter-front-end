@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'findBabysitter', component: FABabysitterComponent },
   { path: 'becomeBabysitter', component: BABabysitterComponent },
-  { path: 'scheduleATransaction', component: ScheduleATransactionComponent },
+  { path: 'scheduleATransaction/:id', component: ScheduleATransactionComponent },
   { path: 'settings/:id', component: SettingsComponent },
   { path: 'userSettings', component: UserSettingsComponent },
   { path: 'admin', component: AdminComponent },
