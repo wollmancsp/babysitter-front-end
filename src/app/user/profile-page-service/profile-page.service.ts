@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import {Message} from "../message-class/message";
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,21 @@ import { User } from '../model/user';
 export class ProfileService {
 
   private usersUrl: string;
+  private messageUrl: string;
 
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8080/users';
+    this.messageUrl = 'http://localhost:8080/message';
   }
 
-  public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl);
+  public findUser(userID: Number): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/FindByUserID/${userID}`);
   }
 
-  public save(user: User) {
-    return this.http.post<User>(this.usersUrl, user);
+  public createNewChat(userID1: string, userID2: string): Observable<Boolean> {
+    const params = new HttpParams()
+      .set('p1', userID1)
+      .set('p2', userID2);
+    return this.http.post<Boolean>(`${this.messageUrl}/ChatCreate`,params);
   }
 }

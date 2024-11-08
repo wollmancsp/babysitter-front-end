@@ -8,7 +8,10 @@
         <a (click)="selectTabComponent(1)">Messages</a>
       </li>
       <li>
-        <a (click)="selectTabComponent(2)">Settings</a>
+        <a (click)="selectTabComponent(2)">Transactions</a>
+      </li>
+      <li>
+        <a (click)="selectTabComponent(3)">Settings</a>
       </li>
     </ul>
   </div>
@@ -23,6 +26,9 @@
       <app-messages></app-messages>
     </div>
     <div *ngIf="selectorNum === 2;">
+      <transaction-page></transaction-page>
+    </div>
+    <div *ngIf="selectorNum === 3;">
       <app-user-settings></app-user-settings>
     </div>
   </div>

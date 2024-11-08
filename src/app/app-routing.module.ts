@@ -10,17 +10,24 @@ import { BABabysitterComponent } from './babysitter/become-a-babysitter/baBabysi
 import { SettingsComponent } from './settings/main-settings-page/settings.component';
 import { UserSettingsComponent } from './settings/user-settings/user-settings.component';
 import { AdminComponent } from './admin/admin-page/admin.component';
+import {ScheduleATransactionComponent} from "./babysitter/schedule-a-transaction/schedule-a-transaction.component";
+import {TransactionService} from "./transaction/transaction-page-service/transaction-page.service";
+import {
+  TransactionComponent
+} from "./transaction/transaction-page/transaction-page.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'profile', component: ProfilePageComponent },
+  { path: 'profile/:userid', component: ProfilePageComponent },
   { path: '', component: HomeComponent },
   { path: 'findBabysitter', component: FABabysitterComponent },
   { path: 'becomeBabysitter', component: BABabysitterComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'scheduleATransaction/:id', component: ScheduleATransactionComponent },
+  { path: 'settings/:id', component: SettingsComponent },
   { path: 'userSettings', component: UserSettingsComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'transaction', component: TransactionComponent },
   { path: '', loadComponent: () => import('./layouts/navbar/navbar.component'), outlet: 'navbar'}
 ];
 

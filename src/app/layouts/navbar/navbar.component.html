@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li>
-                <a class="navSignIn" routerLink="/settings" (click)="collapseNavbar()">
+                <a class="navSignIn" [routerLink]="['/settings', 0]" (click)="collapseNavbar()">
                     <span>
                         <fa-icon icon="gear"></fa-icon>
                         <span> Settings</span>
@@ -80,6 +80,5 @@
                 </a>
             </li>
         }
-    </ul> 
+    </ul>
 </nav>
-  

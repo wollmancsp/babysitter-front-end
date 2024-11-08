@@ -59,8 +59,8 @@ img {
 .detailsList{
 	display: grid;
     gap: 15px 10px;
-    grid-template-columns: 50% 50%; /* Width */  
-    grid-template-rows: auto; /* Height */ 
+    grid-template-columns: 50% 50%; /* Width */
+    grid-template-rows: auto; /* Height */
 }
 
 .detailsList p{
@@ -76,8 +76,8 @@ img {
     width: 100%;
     display: grid;
     gap: 10px 10px;
-    grid-template-columns: 33% 34% 33%; /* Width */  
-    grid-template-rows: 15pc; /* Height */ 
+    grid-template-columns: 33% 34% 33%; /* Width */
+    grid-template-rows: 15pc; /* Height */
 }
 
 .mainPageTextDiv {
@@ -119,13 +119,13 @@ img {
 	margin-right: 50%;
 }
 
-.priceTag { 
+.priceTag {
 	display: inline;
 	sup {
-		font-size: 12px; 
+		font-size: 12px;
 	}
 	strong {
-		font-size: 24px; 
+		font-size: 24px;
 	}
 }
 
@@ -174,8 +174,8 @@ img {
     width: 100%;
     display: grid;
     gap: 10px 10px;
-    grid-template-columns: 20% 60% 20%; /* Width */  
-    grid-template-rows: 10pc; /* Height */ 
+    grid-template-columns: 20% 60% 20%; /* Width */
+    grid-template-rows: 10pc; /* Height */
 }
 
 .scrollMenu {
@@ -187,6 +187,11 @@ img {
 .starsDiv {
 	text-align: center;
 	font-size: 3pc;
+}
+
+.warning {
+  text-align: center;
+  color: red;
 }
 /*##### End of Class Selectors #####*/
 

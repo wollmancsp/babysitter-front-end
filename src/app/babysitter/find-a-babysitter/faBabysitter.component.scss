@@ -10,25 +10,18 @@ ul {
 	list-style-type: none;
 }
 /*##### End of Element Selectors #####*/
-  
-  
+
+
 /*##### Beginning of Class Selectors #####*/
-.innerMessageBox {
-	// margin: -1% 0px;
-	margin: 1% 0;
-	width: 94%;
-	// max-height: 98%;
-	//height: 50%;
-	//min-height: 77%;
-	flex-direction: column;
-	// overflow: scroll;
+.addressLine {
+
 }
 
 .babysitterBox {
 	min-height: 10vh;
 	img {
 		height: 16vh;
-		width: height;
+		width: 16vh;
     margin-left: 20px;
     margin-top: auto;
     margin-bottom: auto;
@@ -38,22 +31,22 @@ ul {
 	background-color: #dedede;
 	margin: 5px 0px;
 	border-radius: 2px;
-  position: relative;
+    position: relative;
 
-  display: grid;
-  grid-template-columns: 33% 50% 17%;
-  grid-template-rows: aut0;
+    display: grid;
+    grid-template-columns: 33% 50% 17%;
+    grid-template-rows: auto;
 }
 
-.wages {
-	text-overflow: clip;
-	overflow: hidden;
-}
-
-.profileTextBox {
-}
-
-.addressLine {
+.innerMessageBox {
+  // margin: -1% 0px;
+  margin: 1% 0;
+  width: 94%;
+  // max-height: 98%;
+  //height: 50%;
+  //min-height: 77%;
+  flex-direction: column;
+  // overflow: scroll;
 }
 
 .noAddressLoaded {
@@ -64,7 +57,20 @@ ul {
 .outerMessageBox {
   margin: auto;
 }
+
+.profileTextBox {
+
+}
+
+.searchBox {
+
+}
+
+.wages {
+  text-overflow: clip;
+  overflow: hidden;
+}
 /*##### End of Class Selectors #####*/
-  
-  
+
+
 /*##### End of Top Navigation Bar Styles #####*/

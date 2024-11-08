@@ -14,6 +14,6 @@ export class RegisterService {
   }
 
   public create(user: User) {
-    return this.http.post<User>(this.usersUrl, user);
+    return this.http.post<User>(`${this.usersUrl}/CreateUser`, user);
   }
 }

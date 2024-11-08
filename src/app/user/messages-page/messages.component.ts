@@ -1,54 +1,129 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Message } from '../message-class/message';
 import { Chat } from '../chat-class/chat';
-import { NgFor, NgIf } from '@angular/common';
+import {AsyncPipe, NgFor, NgIf} from '@angular/common';
 import { MessageService } from '../message-service/message-service.service';
 import { User } from '../model/user';
+import {AccountService} from "../account-service/account-service.service";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss'],
   standalone: true,
-  imports: [RouterModule, NgFor, NgIf]
+  imports: [RouterModule, NgFor, NgIf, AsyncPipe]
 })
 export class MessagesComponent implements OnInit {
 
-  protected chat_list: Chat[];
+  chatLoaded: Promise<boolean> = Promise.resolve(false);
+  protected chat_list: any;
   protected chatSelectedID: number = -1;
   @ViewChild('myTextarea') myTextarea: ElementRef;
   protected tempUserID: number = 8;
   protected usersList: User[];
+  accService = inject(AccountService);
+  account = this.accService.trackCurrentUser();
+  private refreshInterval: any;
+  private subscription: Subscription;
+  private subscription2: Subscription;
+
+  protected chat_list2: Observable<any>;
 
 
   constructor(
-    private route: ActivatedRoute, 
-      private router: Router, 
-      private messsageService: MessageService) {
+    private route: ActivatedRoute,
+    private router: Router,
+    private messsageService: MessageService) {
   }
 
   ngOnInit() {
-    //8 Is temporary user ID until login is ready
-    this.messsageService.findAllChats(this.tempUserID).subscribe(data => {
-      // console.log("RET: " + data);
-      this.chat_list = data;
-    });
+    let acc = this.account();
+    if (acc === null) {
+      console.log("Error loading chat_list");
+      this.chat_list = [];
+    }else {
+
+      this.subscription = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(data => {
+        this.chat_list = data;
+        // console.log("RET: " + this.chat_list.length);
+        // console.log("TEMP3: " + this.chat_list[0].chat_id);
+
+        //Add all users based on full chat_list
+        let userIDsList = [];
+        for (let i = 0; i < this.chat_list.length; i++)
+          for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
+            userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
+
+        this.messsageService.getUserIDs(userIDsList).subscribe(data2 => {
+          this.usersList = data2;
+          this.chatLoaded = Promise.resolve(true);
+        });
+      });
+      this.subscription.unsubscribe();
+    }
+
+    this.refreshData();
+    this.refreshInterval = setInterval(() => {
+      this.refreshData();
+    }, 5000);
+  }
+
+  ngOnDestroy() {
+      //this.subscription.unsubscribe();
+      //this.subscription2.unsubscribe();
+  }
+
+  refreshData() {
+    console.log("Refresh");
+    // if(this.subscription2 !== undefined)
+    //   this.subscription2.unsubscribe();
+    let acc = this.account();
+    if (acc !== null) {
+      this.subscription2 = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(data => {
+        this.chat_list = data;
+        console.log("RET: " + this.chat_list.length);
+
+        //Add all users based on full chat_list
+        let userIDsList = [];
+        for (let i = 0; i < this.chat_list.length; i++)
+          for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
+            userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
+
+        this.messsageService.getUserIDs(userIDsList).subscribe(data2 => {
+          this.usersList = data2;
+          this.chatLoaded = Promise.resolve(true);
+        });
+      });
+    }
   }
 
   protected submitMessage(event: KeyboardEvent): void {
     if(event.key === 'Enter') {
       // console.log(`The user pressed: ${event.key}`);
-      var message = new Message('-1', this.tempUserID.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chat_list[this.chatSelectedID].chat_id.toString());
-      // console.log("ID: " + message.message_id + "UserID: " + message.user_id + "Text: " + message.message_text + "Date: " + message.message_time + "ChatID: " + this.chat_list[this.chatSelectedID].chat_id);
-      this.myTextarea.nativeElement.value = "";
-      this.messsageService.sendMessage(message).subscribe(data => {
-        // console.log("MSG Sub: " + data);
-        this.messsageService.updateChat(this.chat_list[this.chatSelectedID].chat_id).subscribe(data2 => {
-          this.chat_list[this.chatSelectedID] = data2;
-          console.log("Chat Updated!" + data2.messages_array.length);
+      let acc = this.account();
+      if (acc !== null) {
+         // console.log("TEMP2: " + this.chat_list[0].chat_id);
+        var message = new Message('-1', this.tempUserID.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chat_list[this.chatSelectedID].chat_id.toString());
+        // console.log("ID: " + message.message_id + "UserID: " + message.user_id + "Text: " + message.message_text + "Date: " + message.message_time + "ChatID: " + this.chat_list[this.chatSelectedID].chat_id);
+        this.myTextarea.nativeElement.value = "";
+        this.messsageService.sendMessage(message).subscribe(data => {
+          // console.log("MSG Sub: " + data);
+          this.messsageService.updateChat(this.chat_list[this.chatSelectedID].chat_id).subscribe(data2 => {
+            this.chat_list[this.chatSelectedID] = data2;
+            console.log("Chat Updated!" + data2.messages_array.length);
+          });
         });
-      });
+      }
     }
   }
 
@@ -59,15 +134,6 @@ export class MessagesComponent implements OnInit {
         break;
       }
     }
-    this.messsageService.getUserIDs(this.chat_list[this.chatSelectedID].users_id_array.map(str => parseInt(str, 10))).subscribe(data2 => {
-      this.usersList = data2;
-    });
-  }
-
-  protected loadUsersList(id: string): void {
-    this.messsageService.getUserIDs(this.chat_list[parseInt(id)].users_id_array.map(str => parseInt(str, 10))).subscribe(data2 => {
-      this.usersList = data2;
-    });
   }
 
   protected getChatSpecificID(orgID: string): string {
@@ -80,44 +146,20 @@ export class MessagesComponent implements OnInit {
   }
 
   protected getChatUserNames(id: string): string {
-    console.log("Test");
     let CUarray = this.chat_list[parseInt(this.getChatSpecificID(id))].users_id_array;
-
-    this.messsageService.getUserIDs(this.chat_list[parseInt(this.getChatSpecificID(id))].users_id_array.map(str => parseInt(str, 10))).subscribe(data2 => {
-      this.usersList = data2;
-    });
-
-
-
-    console.log("UL Len: " + this.usersList)
 
     let namesString = "";
     for(let i = 0; i < CUarray.length; i++) {
       if(i != 0)
-        namesString += " ";
+        namesString += ", ";
       namesString += this.getUserNameFromID(CUarray[i]);
     }
     return namesString;
-
-
-    // let CUarray = this.chat_list[parseInt(this.getChatSpecificID(id))].users_id_array;
-    // console.log("Chat: " + id);
-    // console.log("Chat2: " + CUarray.length);
-    // this.loadUsersList(this.getChatSpecificID(id));
-    // console.log("UL:" + this.usersList.length);
-
-    // let namesString = "";
-    // for(let i = 0; i < CUarray.length; i++) {
-    //   if(i != 0)
-    //     namesString += " ";
-    //   namesString += this.getUserNameFromID(CUarray[i]);
-    // }
-    // return namesString;
   }
 
-  protected getUserNameFromID(id: String): String {
+  protected getUserNameFromID(id: string): String {
     for(let i = 0; i < this.usersList.length; i++) {
-      if(this.usersList[i].user_id === id)
+      if(this.usersList[i].user_id.toString() === id.toString())
         return this.usersList[i].user_fname + " " + this.usersList[i].user_lname;
     }
     return "";

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
+import {AccountService} from "../../user/account-service/account-service.service";
+import {FABService} from "../find-a-babysitter-service/find-a-babysitter-service.service";
+import { User } from '../../user/model/user';
 
 @Component({
   selector: 'app-find-a-babysitter',
@@ -9,14 +12,31 @@ import { NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [RouterModule, NgFor, NgIf]
 })
-export class FABabysitterComponent implements OnInit { 
+export class FABabysitterComponent implements OnInit {
 
   protected citySearch: String = "Temp";
-  protected babysitterResultsList: String[] = ["1", "1", "1", "1", "1", "1", "1", "1"];
+  protected babysitterResultsList: User[];
+  accService = inject(AccountService);
+  account = this.accService.trackCurrentUser();
+  @ViewChild('myInputArea') myInputArea: ElementRef;
 
-  constructor() {
+  constructor(private fABService: FABService) {
   }
 
   ngOnInit() {
+  }
+
+  protected submitSearch(event: KeyboardEvent): void {
+    if(event.key === 'Enter') {
+      this.fABService.searchByCity(this.myInputArea.nativeElement.value).subscribe(data => {
+        // console.log("FAB Search Text: " + data);
+        this.babysitterResultsList = data;
+      });
+
+      let acc = this.account();
+      if (acc !== null) {
+
+      }
+    }
   }
 }
