@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-//import { User } from '../model/user';
+//import { Transaction } from '../model/user';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RegisterService } from '../register-service/register-service.service';
 import { User } from '../../user/model/user';

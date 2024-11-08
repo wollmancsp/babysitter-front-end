@@ -1,0 +1,82 @@
+/*
+  Organized Alphabetically: Please try to keep it this way
+*/
+
+/*##### Beginning of Profile Page Styles #####*/
+
+
+/*##### Beginning of Element Selectors #####*/
+/*##### End of Element Selectors #####*/
+
+
+/*##### Beginning of Class Selectors #####*/
+.DisplayUL {
+  list-style-type: none;
+}
+
+.DisplayLI {
+  border: 2px solid #555555;
+  color: black;
+  background-color: #dedede;
+  margin: 2px 2px;
+  border-radius: 2px;
+}
+
+.JobsYouRequested {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.JobsYourWorking {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.MainBody {
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.SelectorA {
+  padding: 8px 18px;
+  color: black;
+  text-decoration: none;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+.SelectorAnonSEL {
+  background-color: lightgray;
+}
+
+.SelectorASEL {
+  background-color: #b3b3b3;
+}
+
+.SelectorA:hover {
+  background-color: #909090;
+}
+
+.SelectorLI {
+  padding: 8px 0;
+  border: 2px solid #555555;
+  color: black;
+  background-color: #dedede;
+  margin: 2px 2px;
+  border-radius: 2px;
+  display: inline;
+  max-width: 175px;
+}
+
+.SelectorUL {
+  padding: 10px 0;
+  background-color: lightgray;
+  list-style-type: none;
+  margin: 2rem;
+  text-align: center;
+  width: 100%;
+}
+/*##### End of Class Selectors #####*/
+
+
+/*##### End of Top Navigation Bar Styles #####*/

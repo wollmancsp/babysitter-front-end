@@ -5,13 +5,14 @@ import { ProfilePageComponent } from '../../user/profile-page/profile-page.compo
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import { MessagesComponent } from '../../user/messages-page/messages.component';
 import {ProfileService} from "../../user/profile-page-service/profile-page.service";
+import { TransactionComponent } from "../../transaction/transaction-page/transaction-page.component";
 
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
   standalone: true,
-  imports: [RouterModule, ProfilePageComponent, NgIf, UserSettingsComponent, MessagesComponent, AsyncPipe]
+  imports: [RouterModule, ProfilePageComponent, NgIf, UserSettingsComponent, MessagesComponent, AsyncPipe, TransactionComponent]
 })
 export class SettingsComponent implements OnInit {
 

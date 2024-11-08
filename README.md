@@ -28,18 +28,24 @@ Angular v0.9.3:
 --Note: Still need to add auto refreshes to recieve exterior messages & Fix Chat Box Selections.
 
 Angular v0.9.3.1:
--User Registration functionality added
+-Transaction Registration functionality added
 -Admin Page pulls users from DB
 --Still needs to enable user deletion & promotion to admin
--User object can be passed around website, implemented in user profile & navbar so far
+-Transaction object can be passed around website, implemented in user profile & navbar so far
 -Find a babysitter partial template added.
 
 Angular v0.9.3.2:
 -Fixed Messaging so it displays everything correctly, as well as refreshes/updates chat.
---TODO: Start chat (Via another User's Profile)
+--TODO: Start chat (Via another Transaction's Profile)
 --TODO: Fix Subscription Overload causing Backend shutdown.
 
-
+Angular v0.9.4:
+-Added Transactions:
+--Starting a transaction via visiting someone else's profile
+--Filling out transaction data and successfully submitting
+--Added your list of transactions in the settings page
+--Able to accept/decline only [pending transactions, date set in the future, that you are working (sitting)]
+---Need to be able to refresh page and see transaction updates.
 
 # TestAngApp
 

@@ -41,7 +41,7 @@ export class ScheduleATransactionComponent implements OnInit {
       return;
       //Error, not signed in
     }else {
-      this.sitterID = parseInt(acc.user_id);
+      this.parentID = parseInt(acc.user_id);
       this.sATService.submitTransaction(this.parentID, this.sitterID, this.myDetails.nativeElement.value, this.myStartDate.nativeElement.value, this.myEndDate.nativeElement.value, this.myPay.nativeElement.value).subscribe(data => {
         if (!this.router.getCurrentNavigation()) {
           // There were no routing during login (eg from navigationToStoredUrl)

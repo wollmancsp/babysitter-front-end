@@ -27,10 +27,18 @@ export class ProfilePageComponent implements OnInit {
       private router: Router,
       private profileService: ProfileService) {
     this.route.params.subscribe( params => {
-      this.viewedAccountNumber = params['id'];
-      this.profileService.findUser(this.viewedAccountNumber).subscribe(data => {
-        this.viewedAccount = data;
-      })
+      if(params['userid'] != undefined && params['userid'] != null) {
+        this.viewedAccountNumber = params['userid'];
+        this.profileService.findUser(this.viewedAccountNumber).subscribe(data => {
+          this.viewedAccount = data;
+        });
+      }else {
+        let acc = this.account();
+        if(acc !== null) {
+          this.viewedAccountNumber = parseInt(acc.user_id);
+          this.viewedAccount = acc;
+        }
+      }
     });
   }
 

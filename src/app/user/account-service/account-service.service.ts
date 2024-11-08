@@ -8,7 +8,7 @@ export class AccountService {
 
   private userIdentity = signal<User | null>(null);
 
-  saveUser(newUser: User | null): void { //WritableSignal<User | null>;
+  saveUser(newUser: User | null): void { //WritableSignal<Transaction | null>;
     // this.userIdentity = signal(user);
     this.userIdentity.update(user => newUser);
     // console.log("Curr Acc: " + this.userIdentity);
