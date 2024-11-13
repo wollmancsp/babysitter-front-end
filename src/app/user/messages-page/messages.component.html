@@ -1,14 +1,16 @@
 <div>
   <div class="mainGrid">
     <div *ngIf="chatLoaded | async;else other_content">
-      <ul>
-        <li *ngFor="let chat of chatList">
-          <div class="chatGUIBox" (click)="selectTabComponent(chat.chat_id.toString())">
-            <img src="\speechBubbleMessage.png" alt = ""/>
-            <p>{{ getChatUserNames(chat.chat_id.toString()) }}</p>
-          </div>
-        </li>
-      </ul>
+      <div *ngIf="chatList.length != 0;">
+        <ul>
+          <li *ngFor="let chat of chatList">
+            <div class="chatGUIBox" (click)="selectTabComponent(chat.chat_id.toString())">
+              <img src="\speechBubbleMessage.png" alt = ""/>
+              <p>{{ getChatUserNames(chat.chat_id.toString()) }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <ng-template #other_content>
       <!-- Here so grid display works right -->
@@ -44,10 +46,8 @@
         </ul>
       </div>
 
-      <div *ngIf="chatSelectedID === -1 && chatList;">
-        <div *ngIf="chatList.length != 0;">
-          <textarea title="messageTextField" class="messageTextField" (keydown)="submitMessage($event)" #myTextarea></textarea>
-        </div>
+      <div *ngIf="chatSelectedID !== -1 && chatList;">
+        <textarea title="messageTextField" class="messageTextField" (keydown)="submitMessage($event)" #myTextarea></textarea>
       </div>
 
     </div>

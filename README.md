@@ -47,6 +47,13 @@ Angular v0.9.4:
 --Able to accept/decline only [pending transactions, date set in the future, that you are working (sitting)]
 ---Need to be able to refresh page and see transaction updates.
 
+Angular v0.9.5:
+-Fixed Chat Connection issues! .stream caused connections to NOT unsubscribe, meaning every chat refresh
+--added new connections until the DB was overloaded.
+-Cleaned up the code. Removed most comments (BU in GitHub)
+-Admin Delete & Promote functions are working (Still need to merge with Chris's)
+-A couple quick GUI fixes
+
 # TestAngApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.

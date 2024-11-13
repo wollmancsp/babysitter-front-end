@@ -126,7 +126,7 @@ export class MessagesComponent implements OnInit {
     }
   }
 
-  protected getChatSpecificID(orgID: String): string {
+  protected getChatSpecificID(orgID: String): String {
     for (let i = 0; i < this.chatList.length; i++) {
       if(this.chatList[i].chat_id.toString() == orgID) {
         return i.toString();
@@ -135,8 +135,8 @@ export class MessagesComponent implements OnInit {
     return "";
   }
 
-  protected getChatUserNames(id: string): string {
-    let CUarray = this.chatList[parseInt(this.getChatSpecificID(id))].users_id_array;
+  protected getChatUserNames(id: String): String {
+    let CUarray = this.chatList[parseInt(this.getChatSpecificID(id).toString())].users_id_array;
 
     let namesString = "";
     for(let i = 0; i < CUarray.length; i++) {
