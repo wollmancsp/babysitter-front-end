@@ -1,10 +1,9 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {AsyncPipe, NgIf} from '@angular/common';
-import {ActivatedRoute, Router, RouterModule} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProfilePageComponent } from '../../user/profile-page/profile-page.component';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import { MessagesComponent } from '../../user/messages-page/messages.component';
-import {ProfileService} from "../../user/profile-page-service/profile-page.service";
 import { TransactionComponent } from "../../transaction/transaction-page/transaction-page.component";
 
 @Component({
@@ -18,8 +17,7 @@ export class SettingsComponent implements OnInit {
 
   protected selectorNum: number;
 
-  constructor(private route: ActivatedRoute,
-              private ref: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute) {
     this.route.params.subscribe( params => {
       this.selectorNum = Number(params['id']);
     });
@@ -29,13 +27,6 @@ export class SettingsComponent implements OnInit {
   }
 
   protected selectTabComponent(componentSelected: number): void {
-    // this.ref.detectChanges();
     this.selectorNum = componentSelected;
-    // console.log("Num: " + this.selectorNum);
-  }
-
-  protected protectedInit(one: number): void {
-    // this.ref.detectChanges();
-    this.selectorNum = one;
   }
 }

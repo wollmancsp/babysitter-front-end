@@ -6,9 +6,10 @@
       <div>
         <label class="labelClass labelEmail" for="email">Email</label>
         <input
-        type="text"
-        [(ngModel)]="user.user_emailaddress"
-        class="InputField inputEmail"
+          id="email"
+          type="text"
+          [(ngModel)]="user.user_emailaddress"
+          class="InputField inputEmail"
           placeholder="Your email"
           name="email"
           title="email"
@@ -18,7 +19,8 @@
       <div>
         <label class="labelClass labelPassword" for="password">Password</label>
         <input
-        type="text"
+          id="password"
+          type="text"
           [(ngModel)]="user.user_password"
           class="InputField inputPassword"
           name="password"
@@ -29,8 +31,9 @@
       <div>
         <label class="labelClass labelEmail" for="phone">Phone</label>
         <input
-        type="text"
-        [(ngModel)]="user.user_phone"
+          id="phone"
+          type="text"
+          [(ngModel)]="user.user_phone"
           class="InputField inputEmail"
           name="phone"
           placeholder="Your phone"
@@ -40,7 +43,8 @@
       <div>
         <label class="labelClass labelFirstName" for="firstName">First Name</label>
         <input
-        type="text"
+          id="firstName"
+          type="text"
           [(ngModel)]="user.user_fname"
           class="InputField inputFirstName"
           name="firstName"
@@ -51,7 +55,8 @@
       <div>
         <label class="labelClass labelLastName" for="lastName">Last Name</label>
         <input
-        type="text"
+          id="lastName"
+          type="text"
           [(ngModel)]="user.user_lname"
           class="InputField inputLastName"
           name="lastName"

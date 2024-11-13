@@ -16,7 +16,6 @@ export class LoginService {
   }
 
   public submitLogin(loginReq: LoginRequest): Observable<User> {
-    // console.log("E: " + loginReq.email + " P: " + loginReq.password);
     return this.http.post<User>(this.usersUrl, loginReq);
   }
 }

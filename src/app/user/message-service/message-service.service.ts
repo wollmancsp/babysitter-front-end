@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chat } from '../chat-class/chat'
 import { Message } from '../message-class/message'
-import { Observable } from 'rxjs';
+import {Observable, Subject, startWith, switchMap, tap, of} from 'rxjs';
 import { User } from '../model/user';
 
 @Injectable({
@@ -12,6 +12,16 @@ export class MessageService {
 
   private messageUrl: string;
   private usersUrl: string;
+  private employeesUpdated$ = new Subject<void>();
+
+  //Source: https://stackoverflow.com/questions/72251269/how-to-update-a-subscription-to-a-get-request-after-posting-new-data-to-the-back
+  employees$ = this.employeesUpdated$.pipe(
+    startWith({}),
+    switchMap(() =>
+      this.http.get<Date>(`${this.messageUrl}/TestSubscribe`)
+    )
+  );
+
 
   constructor(private http: HttpClient) {
     this.messageUrl = 'http://localhost:8080/message';
@@ -19,7 +29,7 @@ export class MessageService {
   }
 
   public findAllChats(userID: Number): Observable<Chat[]> {
-    return this.http.get<Chat[]>(`${this.messageUrl}/${userID}`);
+    return this.http.get<Chat[]>(`${this.messageUrl}/FindAllChats/${userID}`);
   }
 
   public sendMessage(message: Message): Observable<Message> {

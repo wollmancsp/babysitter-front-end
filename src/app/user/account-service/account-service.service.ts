@@ -1,5 +1,5 @@
 import { Injectable, signal, Signal } from '@angular/core';
-import { User } from '../../user/model/user';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,6 @@ export class AccountService {
   private userIdentity = signal<User | null>(null);
 
   saveUser(newUser: User | null): void { //WritableSignal<Transaction | null>;
-    // this.userIdentity = signal(user);
     this.userIdentity.update(user => newUser);
     // console.log("Curr Acc: " + this.userIdentity);
   }

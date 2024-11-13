@@ -1,20 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  inject,
-  OnInit,
-  ViewChild,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy
-} from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Message } from '../message-class/message';
-import { Chat } from '../chat-class/chat';
+import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {AsyncPipe, NgFor, NgIf} from '@angular/common';
-import { MessageService } from '../message-service/message-service.service';
-import { User } from '../model/user';
+import {MessageService} from '../message-service/message-service.service';
+import {User} from '../model/user';
 import {AccountService} from "../account-service/account-service.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable, switchMap} from "rxjs";
+import {Message} from "../message-class/message";
 
 @Component({
   selector: 'app-messages',
@@ -34,15 +25,15 @@ export class MessagesComponent implements OnInit {
   accService = inject(AccountService);
   account = this.accService.trackCurrentUser();
   private refreshInterval: any;
-  private subscription: Subscription;
-  private subscription2: Subscription;
 
   protected chat_list2: Observable<any>;
+  protected tempDate: Date;
+  protected tempNum: number = 0;
+
+
 
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private messsageService: MessageService) {
   }
 
@@ -52,24 +43,28 @@ export class MessagesComponent implements OnInit {
       console.log("Error loading chat_list");
       this.chat_list = [];
     }else {
+      const sub4 = this.messsageService.findAllChats(parseInt(acc.user_id))
+      .pipe(
+        switchMap(data1 => {
+          this.chat_list = data1;
 
-      this.subscription = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(data => {
-        this.chat_list = data;
-        // console.log("RET: " + this.chat_list.length);
-        // console.log("TEMP3: " + this.chat_list[0].chat_id);
-
-        //Add all users based on full chat_list
-        let userIDsList = [];
-        for (let i = 0; i < this.chat_list.length; i++)
-          for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
-            userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
-
-        this.messsageService.getUserIDs(userIDsList).subscribe(data2 => {
-          this.usersList = data2;
-          this.chatLoaded = Promise.resolve(true);
-        });
+          //Add all users based on full chat_list
+          let userIDsList = [];
+          for (let i = 0; i < this.chat_list.length; i++)
+            for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
+              userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
+          return this.messsageService.getUserIDs(userIDsList);
+        })
+      )
+      .subscribe(data2 => {
+        this.usersList = data2;
+        this.chatLoaded = Promise.resolve(true);
+        sub4.unsubscribe();
       });
-      this.subscription.unsubscribe();
+      // setTimeout(() => {
+      //   sub4.unsubscribe();
+      //   console.log("Done2");
+      // }, 5000);
     }
 
     this.refreshData();
@@ -79,17 +74,14 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnDestroy() {
-      //this.subscription.unsubscribe();
-      //this.subscription2.unsubscribe();
+
   }
 
   refreshData() {
-    console.log("Refresh");
-    // if(this.subscription2 !== undefined)
-    //   this.subscription2.unsubscribe();
+    // console.log("Refresh");
     let acc = this.account();
     if (acc !== null) {
-      this.subscription2 = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(data => {
+      const sub1 = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(res=>{console.log('Sub1')}, data => {
         this.chat_list = data;
         console.log("RET: " + this.chat_list.length);
 
@@ -99,20 +91,37 @@ export class MessagesComponent implements OnInit {
           for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
             userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
 
-        this.messsageService.getUserIDs(userIDsList).subscribe(data2 => {
+        const sub2 = this.messsageService.getUserIDs(userIDsList).subscribe(res=>{console.log('Sub2')}, data2 => {
           this.usersList = data2;
           this.chatLoaded = Promise.resolve(true);
         });
+        setTimeout(() => {
+          sub2.unsubscribe();
+          console.log("Done2");
+        }, 3000);
       });
+      setTimeout(() => {
+        sub1.unsubscribe();
+        console.log("Done1");
+      }, 4000);
     }
   }
 
   protected submitMessage(event: KeyboardEvent): void {
+    const sub = this.messsageService.employees$.subscribe(data => {
+      this.tempDate = data;
+    });
+
+    setTimeout(() => {
+      sub.unsubscribe();
+    }, 5000);
+
+
     if(event.key === 'Enter') {
       // console.log(`The user pressed: ${event.key}`);
       let acc = this.account();
       if (acc !== null) {
-         // console.log("TEMP2: " + this.chat_list[0].chat_id);
+        // console.log("TEMP2: " + this.chat_list[0].chat_id);
         var message = new Message('-1', this.tempUserID.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chat_list[this.chatSelectedID].chat_id.toString());
         // console.log("ID: " + message.message_id + "UserID: " + message.user_id + "Text: " + message.message_text + "Date: " + message.message_time + "ChatID: " + this.chat_list[this.chatSelectedID].chat_id);
         this.myTextarea.nativeElement.value = "";
