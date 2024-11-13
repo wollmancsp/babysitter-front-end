@@ -20,17 +20,17 @@
         <td>{{user.user_emailaddress}}</td>
         <td>{{user.user_fname + " " + user.user_lname}}</td>
         <td>
-          @if (user.user_role === true) {
+          @if (user.user_role) {
             Admin
-          } @else if (user.user_role === false || user.user_role === null){
-            <Button>Promote</Button>
+          } @else if (!user.user_role){
+            <button (click)="PromoteUser(parseInt(user.user_id))">Promote</button>
           }
         </td>
-        <td><Button>X</Button></td>
+        <td><button (click)="DeleteUser(parseInt(user.user_id))">X</button></td>
       </tr>
     </table>
   }
-  @else if (account()?.user_role === false || account()?.user_role === null){
+  @else if (account()?.user_role === false || account()?.user_role === undefined){
     You have been logged out. Please login first.
   }
 </div>

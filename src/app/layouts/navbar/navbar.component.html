@@ -22,14 +22,6 @@
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a routerLink="/becomeBabysitter">
-                        <span>
-                            <fa-icon icon="user-plus"></fa-icon>
-                            <span> Become a Babysitter</span>
-                        </span>
-                    </a>
-                </li>
             </ul>
             <!-- End of Main Search Tabs -->
         </li>
@@ -59,14 +51,6 @@
                 </a>
             </li>
         }
-        <li>
-            <a class="navSignIn" routerLink="/inbox">
-                <span>
-                    <fa-icon icon="envelope"></fa-icon>
-                    <span> Inbox</span>
-                </span>
-            </a>
-        </li>
         @if (account()?.user_role) {
             <li>
                 <a class="navSignIn" routerLink="/admin">

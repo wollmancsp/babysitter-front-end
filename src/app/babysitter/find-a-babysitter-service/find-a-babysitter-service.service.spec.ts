@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { FABService } from './find-a-babysitter-service.service';
 
 describe('FABServiceService', () => {

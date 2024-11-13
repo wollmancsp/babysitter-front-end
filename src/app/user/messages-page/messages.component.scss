@@ -59,8 +59,8 @@ ul {
 .mainGrid {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 24.5% 1% 74.5%; /* Width */  
-	grid-template-rows: auto; /* Height */ 
+	grid-template-columns: 24.5% 1% 74.5%; /* Width */
+	grid-template-rows: auto; /* Height */
 }
 
 .messageBox {
@@ -107,11 +107,11 @@ ul {
 	position: relative;
 }
 
-.temp {
+.outerMessageBox2 {
 	position: relative;
 	height: 85%;
 }
-  
+
 .vl {
 	border-left: 2px solid black;
 	height: auto;

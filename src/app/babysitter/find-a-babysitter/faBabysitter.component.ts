@@ -29,7 +29,6 @@ export class FABabysitterComponent implements OnInit {
   protected submitSearch(event: KeyboardEvent): void {
     if(event.key === 'Enter') {
       this.fABService.searchByCity(this.myInputArea.nativeElement.value).subscribe(data => {
-        // console.log("FAB Search Text: " + data);
         this.babysitterResultsList = data;
       });
 

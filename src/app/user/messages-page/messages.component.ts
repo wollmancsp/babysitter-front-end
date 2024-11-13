@@ -1,11 +1,12 @@
-import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router, RouterModule} from '@angular/router';
-import {AsyncPipe, NgFor, NgIf} from '@angular/common';
-import {MessageService} from '../message-service/message-service.service';
-import {User} from '../model/user';
-import {AccountService} from "../account-service/account-service.service";
-import {Observable, switchMap} from "rxjs";
-import {Message} from "../message-class/message";
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { MessageService } from '../message-service/message-service.service';
+import { User } from '../model/user';
+import { AccountService } from "../account-service/account-service.service";
+import { Observable, switchMap } from "rxjs";
+import { Message } from "../message-class/message";
+import {Chat} from "../chat-class/chat";
 
 @Component({
   selector: 'app-messages',
@@ -17,18 +18,14 @@ import {Message} from "../message-class/message";
 export class MessagesComponent implements OnInit {
 
   chatLoaded: Promise<boolean> = Promise.resolve(false);
-  protected chat_list: any;
+  protected chatList: Chat[];
   protected chatSelectedID: number = -1;
   @ViewChild('myTextarea') myTextarea: ElementRef;
   protected tempUserID: number = 8;
   protected usersList: User[];
   accService = inject(AccountService);
   account = this.accService.trackCurrentUser();
-  private refreshInterval: any;
-
-  protected chat_list2: Observable<any>;
-  protected tempDate: Date;
-  protected tempNum: number = 0;
+  protected refreshInterval: any;
 
 
 
@@ -41,19 +38,22 @@ export class MessagesComponent implements OnInit {
     let acc = this.account();
     if (acc === null) {
       console.log("Error loading chat_list");
-      this.chat_list = [];
+      this.chatList = [];
     }else {
       const sub4 = this.messsageService.findAllChats(parseInt(acc.user_id))
       .pipe(
         switchMap(data1 => {
-          this.chat_list = data1;
-
-          //Add all users based on full chat_list
-          let userIDsList = [];
-          for (let i = 0; i < this.chat_list.length; i++)
-            for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
-              userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
-          return this.messsageService.getUserIDs(userIDsList);
+          this.chatList = data1;
+          if(this.chatList.length > 0) {
+            //Add all users based on full chat_list
+            let userIDsList = [];
+            for (let i = 0; i < this.chatList.length; i++)
+              for (let j = 0; j < this.chatList[i].users_id_array.length; j++)
+                userIDsList.push(parseInt(this.chatList[i].users_id_array[j].toString()));
+            return this.messsageService.getUserIDs(userIDsList);
+          }else {
+            return [];
+          }
         })
       )
       .subscribe(data2 => {
@@ -61,12 +61,9 @@ export class MessagesComponent implements OnInit {
         this.chatLoaded = Promise.resolve(true);
         sub4.unsubscribe();
       });
-      // setTimeout(() => {
-      //   sub4.unsubscribe();
-      //   console.log("Done2");
-      // }, 5000);
     }
 
+    //Continually refresh chat for any new chats that might have been sent.S
     this.refreshData();
     this.refreshInterval = setInterval(() => {
       this.refreshData();
@@ -78,76 +75,60 @@ export class MessagesComponent implements OnInit {
   }
 
   refreshData() {
-    // console.log("Refresh");
     let acc = this.account();
     if (acc !== null) {
-      const sub1 = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(res=>{console.log('Sub1')}, data => {
-        this.chat_list = data;
-        console.log("RET: " + this.chat_list.length);
+      const sub1 = this.messsageService.findAllChats(parseInt(acc.user_id)).subscribe(data => {
+        this.chatList = data;
+        if(this.chatList.length > 0) {
+          //Add all users based on full chat_list
+          let userIDsList = [];
+          for (let i = 0; i < this.chatList.length; i++)
+            for (let j = 0; j < this.chatList[i].users_id_array.length; j++)
+              userIDsList.push(parseInt(this.chatList[i].users_id_array[j].toString()));
 
-        //Add all users based on full chat_list
-        let userIDsList = [];
-        for (let i = 0; i < this.chat_list.length; i++)
-          for (let j = 0; j < this.chat_list[i].users_id_array.length; j++)
-            userIDsList.push(parseInt(this.chat_list[i].users_id_array[j]));
-
-        const sub2 = this.messsageService.getUserIDs(userIDsList).subscribe(res=>{console.log('Sub2')}, data2 => {
-          this.usersList = data2;
-          this.chatLoaded = Promise.resolve(true);
-        });
-        setTimeout(() => {
-          sub2.unsubscribe();
-          console.log("Done2");
-        }, 3000);
+          const sub2 = this.messsageService.getUserIDs(userIDsList).subscribe(data2 => {
+            this.usersList = data2;
+            this.chatLoaded = Promise.resolve(true);
+          });
+          setTimeout(() => {
+            sub2.unsubscribe();
+          }, 4000);
+        }
+        return null;
       });
       setTimeout(() => {
         sub1.unsubscribe();
-        console.log("Done1");
       }, 4000);
     }
   }
 
   protected submitMessage(event: KeyboardEvent): void {
-    const sub = this.messsageService.employees$.subscribe(data => {
-      this.tempDate = data;
-    });
-
-    setTimeout(() => {
-      sub.unsubscribe();
-    }, 5000);
-
-
     if(event.key === 'Enter') {
-      // console.log(`The user pressed: ${event.key}`);
       let acc = this.account();
       if (acc !== null) {
-        // console.log("TEMP2: " + this.chat_list[0].chat_id);
-        var message = new Message('-1', this.tempUserID.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chat_list[this.chatSelectedID].chat_id.toString());
-        // console.log("ID: " + message.message_id + "UserID: " + message.user_id + "Text: " + message.message_text + "Date: " + message.message_time + "ChatID: " + this.chat_list[this.chatSelectedID].chat_id);
+        var message = new Message('-1', this.tempUserID.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chatList[this.chatSelectedID].chat_id.toString());
         this.myTextarea.nativeElement.value = "";
         this.messsageService.sendMessage(message).subscribe(data => {
-          // console.log("MSG Sub: " + data);
-          this.messsageService.updateChat(this.chat_list[this.chatSelectedID].chat_id).subscribe(data2 => {
-            this.chat_list[this.chatSelectedID] = data2;
-            console.log("Chat Updated!" + data2.messages_array.length);
+          this.messsageService.updateChat(this.chatList[this.chatSelectedID].chat_id.toString()).subscribe(data2 => {
+            this.chatList[this.chatSelectedID] = data2;
           });
         });
       }
     }
   }
 
-  protected selectTabComponent(chatSelectedID: string): void {
-    for (let i = 0; i < this.chat_list.length; i++) {
-      if(this.chat_list[i].chat_id == chatSelectedID) {
+  protected selectTabComponent(chatSelectedID: String): void {
+    for (let i = 0; i < this.chatList.length; i++) {
+      if(this.chatList[i].chat_id.toString() == chatSelectedID) {
         this.chatSelectedID = i;
         break;
       }
     }
   }
 
-  protected getChatSpecificID(orgID: string): string {
-    for (let i = 0; i < this.chat_list.length; i++) {
-      if(this.chat_list[i].chat_id == orgID) {
+  protected getChatSpecificID(orgID: String): string {
+    for (let i = 0; i < this.chatList.length; i++) {
+      if(this.chatList[i].chat_id.toString() == orgID) {
         return i.toString();
       }
     }
@@ -155,7 +136,7 @@ export class MessagesComponent implements OnInit {
   }
 
   protected getChatUserNames(id: string): string {
-    let CUarray = this.chat_list[parseInt(this.getChatSpecificID(id))].users_id_array;
+    let CUarray = this.chatList[parseInt(this.getChatSpecificID(id))].users_id_array;
 
     let namesString = "";
     for(let i = 0; i < CUarray.length; i++) {
@@ -166,11 +147,14 @@ export class MessagesComponent implements OnInit {
     return namesString;
   }
 
-  protected getUserNameFromID(id: string): String {
+  protected getUserNameFromID(id: String): String {
     for(let i = 0; i < this.usersList.length; i++) {
       if(this.usersList[i].user_id.toString() === id.toString())
         return this.usersList[i].user_fname + " " + this.usersList[i].user_lname;
     }
     return "";
   }
+
+  protected readonly Chat = Chat;
+  protected readonly parseInt = parseInt;
 }

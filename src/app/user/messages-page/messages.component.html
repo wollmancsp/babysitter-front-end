@@ -1,25 +1,37 @@
 <div>
-  {{tempDate}}
-  {{tempNum}}
   <div class="mainGrid">
-    <div *ngIf="chatLoaded | async">
+    <div *ngIf="chatLoaded | async;else other_content">
       <ul>
-        <li *ngFor="let chat of chat_list">
-          <div class="chatGUIBox" (click)="selectTabComponent(chat.chat_id)">
+        <li *ngFor="let chat of chatList">
+          <div class="chatGUIBox" (click)="selectTabComponent(chat.chat_id.toString())">
             <img src="\speechBubbleMessage.png" alt = ""/>
-            <p>{{ getChatUserNames(chat.chat_id) }}</p>
+            <p>{{ getChatUserNames(chat.chat_id.toString()) }}</p>
           </div>
         </li>
       </ul>
     </div>
+    <ng-template #other_content>
+      <!-- Here so grid display works right -->
+      <div class="chatGUIBox">
+        <img src="\speechBubbleMessage.png" alt = ""/>
+        <p>View someone's profile to create a chat!</p>
+      </div>
+    </ng-template>
 
     <div class="vl"></div>
 
     <div class="outerMessageBox">
-      <div class="temp">
-        <div class="noChatLoaded" *ngIf="chatSelectedID === -1;"><h2>Click to load a chat!</h2></div>
+      <div class="outerMessageBox2">
+        <div class="noChatLoaded" *ngIf="chatSelectedID === -1 && chatList;">
+          <div *ngIf="chatList.length == 0;else other_content">
+            <h2>You haven't created any chats yet.</h2>
+          </div>
+          <ng-template #other_content>
+            <h2>Click to load a chat!</h2>
+          </ng-template>
+        </div>
         <ul class="innerMessageBox" *ngIf="chatSelectedID !== -1;">
-          <li *ngFor="let message of chat_list[chatSelectedID].messages_array">
+          <li *ngFor="let message of chatList[chatSelectedID].messages_array">
             <div class="messageBox">
               <img src="\speechBubbleMessage.png" alt = ""/>
               <h5>
@@ -32,7 +44,11 @@
         </ul>
       </div>
 
-      <textarea title="messageTextField" class="messageTextField" (keydown)="submitMessage($event)" #myTextarea></textarea>
+      <div *ngIf="chatSelectedID === -1 && chatList;">
+        <div *ngIf="chatList.length != 0;">
+          <textarea title="messageTextField" class="messageTextField" (keydown)="submitMessage($event)" #myTextarea></textarea>
+        </div>
+      </div>
 
     </div>
   </div>

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ScheduleATransactionComponent } from './schedule-a-transaction.component';
 
 describe('ScheduleATransactionComponent', () => {
