@@ -1,11 +1,10 @@
-import {Component, inject, OnInit, signal, Signal} from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import {Component, inject, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TransactionService } from '../transaction-page-service/transaction-page.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { User } from '../../user/model/user';
 import { AccountService } from '../../user/account-service/account-service.service';
-import {AsyncPipe, NgClass, NgFor, NgIf} from "@angular/common";
-import {Transaction} from "../transaction-model/transaction";
+import { AsyncPipe, NgClass, NgFor, NgIf } from "@angular/common";
+import { Transaction } from "../transaction-model/transaction";
 
 @Component({
   selector: 'transaction-page',
@@ -24,7 +23,6 @@ export class TransactionComponent implements OnInit {
   protected fullTransactionList: Array<Transaction> = [];
   protected selectedTransactionList: Array<Transaction> = [];
 
-  users: User[];
   constructor(
       private transactionService: TransactionService) {
     let acc = this.account();

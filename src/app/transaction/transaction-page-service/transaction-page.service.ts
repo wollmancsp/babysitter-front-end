@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs";
-import {Chat} from "../../user/chat-class/chat";
 import {Transaction} from "../transaction-model/transaction";
-import {Message} from "../../user/message-class/message";
 
 @Injectable({
   providedIn: 'root'

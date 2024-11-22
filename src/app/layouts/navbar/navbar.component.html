@@ -1,16 +1,13 @@
 <nav data-cy="navbar" class="navbar">
     <ul class="mainUL">
         <li>
-            <a class="navTitle" routerLink="/" (click)="collapseNavbar()">
-                <span class="navbar-title">Babysitter App </span>
-                <span>{{ version }}</span>
-            </a>
+          <span class="navbar-title">Babysitter App </span>
         </li>
         <li>
             <!-- Beg of Main Search Tabs -->
             <ul>
                 <li>
-                    <a routerLink="/" (click)="collapseNavbar()">
+                    <a routerLink="/">
                         <span>
                             <fa-icon icon="home"></fa-icon>
                             <span> Home</span>
@@ -18,18 +15,10 @@
                     </a>
                 </li>
                 <li>
-                    <a routerLink="/findBabysitter" (click)="collapseNavbar()">
+                    <a routerLink="/findBabysitter">
                         <span>
                             <fa-icon icon="magnifying-glass"></fa-icon>
                             <span> Search Babysitters</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a routerLink="/becomeBabysitter" (click)="collapseNavbar()">
-                        <span>
-                            <fa-icon icon="user-plus"></fa-icon>
-                            <span> Become a Babysitter</span>
                         </span>
                     </a>
                 </li>
@@ -38,7 +27,7 @@
         </li>
         @if (account() === null) {
             <li>
-                <a class="navSignIn" routerLink="/login" (click)="collapseNavbar()">
+                <a class="navSignIn" routerLink="/login">
                     <span>
                         <span>Sign in</span>
                     </span>
@@ -47,14 +36,14 @@
         }
         @if (account() !== null) {
             <li>
-                <a class="navSignIn" routerLink="" (click)="collapseNavbar()">
+                <a class="navSignIn" routerLink="">
                     <span>
                         <span (click)="logOut()">Logout</span>
                     </span>
                 </a>
             </li>
             <li>
-                <a class="navSignIn" [routerLink]="['/settings', 0]" (click)="collapseNavbar()">
+                <a class="navSignIn" [routerLink]="['/settings', 0]">
                     <span>
                         <fa-icon icon="gear"></fa-icon>
                         <span> Settings</span>
@@ -62,17 +51,9 @@
                 </a>
             </li>
         }
-        <li>
-            <a class="navSignIn" routerLink="/inbox" (click)="collapseNavbar()">
-                <span>
-                    <fa-icon icon="envelope"></fa-icon>
-                    <span> Inbox</span>
-                </span>
-            </a>
-        </li>
         @if (account()?.user_role) {
             <li>
-                <a class="navSignIn" routerLink="/admin" (click)="collapseNavbar()">
+                <a class="navSignIn" routerLink="/admin">
                     <span>
                         <fa-icon icon="lock"></fa-icon>
                         <span> Admin</span>

@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-//import { Transaction } from '../model/user';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../register-service/register-service.service';
 import { User } from '../../user/model/user';
 import { LoginRequest } from '../login-request-class/login-request';
@@ -19,13 +18,13 @@ export class RegisterFormComponent implements OnInit {
   accService = inject(AccountService);
 
   constructor(
-    private route: ActivatedRoute,
       private router: Router,
       private registerService: RegisterService,
       private loginService: LoginService) {
-        this.user = new User();
-        this.user.user_role = false; //Non-Admin
-        this.user.user_enabled = true;
+
+      this.user = new User();
+      this.user.user_role = false; //Non-Admin
+      this.user.user_enabled = true;
   }
 
   onSubmit() {

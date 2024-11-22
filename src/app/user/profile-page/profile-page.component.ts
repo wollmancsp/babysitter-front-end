@@ -21,11 +21,11 @@ export class ProfilePageComponent implements OnInit {
   viewedAccountNumber: Number;
   createChatError: Signal<Boolean> = signal(false);
 
-  users: User[];
   constructor(
     private route: ActivatedRoute,
       private router: Router,
       private profileService: ProfileService) {
+
     this.route.params.subscribe( params => {
       if(params['userid'] != undefined && params['userid'] != null) {
         this.viewedAccountNumber = params['userid'];

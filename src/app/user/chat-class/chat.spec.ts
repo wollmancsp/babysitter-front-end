@@ -2,8 +2,8 @@ import { Chat } from './chat';
 import { Message } from "../message-class/message";
 
 describe('Chat', () => {
-  let chat_id: string;
-  let users_id_array: string[];
+  let chat_id: number;
+  let users_id_array: String[];
   let messages_array: Message[];
 
   it('should create an instance', () => {

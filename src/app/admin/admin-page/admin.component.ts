@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { AdminService } from '../admin-service/admin-service.service';
@@ -19,8 +19,6 @@ export class AdminComponent implements OnInit {
   account = this.accService.trackCurrentUser();
 
   constructor(
-    private route: ActivatedRoute, 
-      private router: Router, 
       private adminService: AdminService) {
   }
 
@@ -29,4 +27,20 @@ export class AdminComponent implements OnInit {
       this.userList = data;
     });
   }
+
+  protected PromoteUser(userID: number) {
+    this.adminService.PromoteUser(userID).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  protected DeleteUser(userID: number) {
+    if(confirm("Are you sure to delete " + userID)) {
+      this.adminService.DeleteUser(userID).subscribe(data => {
+        console.log(data);
+      });
+    }
+  }
+
+  protected readonly parseInt = parseInt;
 }

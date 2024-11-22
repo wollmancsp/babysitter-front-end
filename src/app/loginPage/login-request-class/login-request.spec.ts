@@ -1,6 +1,6 @@
 import { LoginRequest } from './login-request';
 
-describe('Chat', () => {
+describe('LoginRequest', () => {
   let email: string;
   let password: string;
 
