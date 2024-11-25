@@ -1,17 +1,18 @@
-import {Component, inject, OnInit, signal, Signal} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, signal, Signal, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProfileService } from '../profile-page-service/profile-page.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { User } from '../model/user';
 import { AccountService } from '../account-service/account-service.service';
-import {AsyncPipe, NgIf} from "@angular/common";
+import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss'],
   standalone: true,
-  imports: [RouterModule, FontAwesomeModule, AsyncPipe, NgIf]
+  imports: [RouterModule, FontAwesomeModule, AsyncPipe, NgIf, NgOptimizedImage]
 })
 export class ProfilePageComponent implements OnInit {
 
@@ -20,11 +21,14 @@ export class ProfilePageComponent implements OnInit {
   viewedAccount: User;
   viewedAccountNumber: Number;
   createChatError: Signal<Boolean> = signal(false);
+  image: any;
+  @ViewChild('myImg') myImg: HTMLImageElement;
 
   constructor(
     private route: ActivatedRoute,
       private router: Router,
-      private profileService: ProfileService) {
+      private profileService: ProfileService,
+      private sanitizer: DomSanitizer) {
 
     this.route.params.subscribe( params => {
       if(params['userid'] != undefined && params['userid'] != null) {
@@ -37,6 +41,7 @@ export class ProfilePageComponent implements OnInit {
         if(acc !== null) {
           this.viewedAccountNumber = parseInt(acc.user_id);
           this.viewedAccount = acc;
+          this.ImageConvert(acc.user_profilepicture)
         }
       }
     });
@@ -63,5 +68,28 @@ export class ProfilePageComponent implements OnInit {
     if (!this.router.getCurrentNavigation()) {
       this.router.navigate(['scheduleATransaction', this.viewedAccountNumber]);
     }
+  }
+
+  protected EditProfile() {
+    if (!this.router.getCurrentNavigation()) {
+      this.router.navigate(['profileEdit']);
+    }
+  }
+
+  protected ImageConvert(file: number[] | undefined) {
+    console.log(file);
+    // console.log(typeof file);
+
+    if(file != undefined) {
+      const base64String = btoa(encodeURIComponent(String.fromCharCode.apply(null, file)));
+      // var base64String = decodeURIComponent(escape(window.atob(String.fromCharCode.apply(null, file))));
+      const imageUrl = `data:image/jpeg;base64,${base64String}`;
+      this.myImg = new Image();
+      this.myImg.src = imageUrl;
+      console.log(this.myImg.src);
+    }
+
+
+    // console.log(this.image);
   }
 }

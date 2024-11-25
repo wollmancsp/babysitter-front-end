@@ -3,7 +3,7 @@
     <div class="outerSplit">
       <div class="headerFormatting">
         <div>
-          <img src="\defaultUserAvatar.jpg" alt = ""/>
+          <img #myImg />
         </div>
         <div class="posRelDiv">
           <div class="mainPageTextDiv posAbsDiv">
@@ -17,6 +17,12 @@
         </div>
         <div class="posRelDiv">
           <div class="posAbsDiv">
+            <span>
+              <button type="button" (click)="EditProfile()">
+                Edit Profile
+              </button>
+            </span>
+            <br>
             <span>
               <button type="button" (click)="createNewTransaction()">
                 Schedule a Time

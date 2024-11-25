@@ -37,5 +37,4 @@ export class AdminService {
       .set('p2', userID);
     return this.http.post<Boolean>(`${this.usersUrl}/ToggleUserEnabled`,params);
   }
-
 }

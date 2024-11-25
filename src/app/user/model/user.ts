@@ -11,4 +11,5 @@ export class User {
     user_password: string;
     user_role: boolean;
     user_enabled: boolean;
+    user_profilepicture: number[]; //Int8Array
 }

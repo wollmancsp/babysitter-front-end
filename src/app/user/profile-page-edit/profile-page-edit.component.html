@@ -1,0 +1,26 @@
+<div>
+  @if (account() != null) {
+    <fieldset class="fieldsetClass">
+      <h1 class="signInClass">Register</h1>
+
+      <form class="form" (ngSubmit)="onSubmit()">
+        <div>
+          <label class="labelClass" for="pfp">Upload Profile Picture</label>
+          <input
+            id="pfp"
+            type="file"
+            [(ngModel)]="selectedFile"
+            class="InputField"
+            name="pfp"
+            title="pfp"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </fieldset>
+  }
+  @else {
+    <p>Please Log In!</p>
+  }
+</div>

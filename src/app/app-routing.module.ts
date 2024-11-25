@@ -12,6 +12,7 @@ import {ScheduleATransactionComponent} from "./babysitter/schedule-a-transaction
 import {
   TransactionComponent
 } from "./transaction/transaction-page/transaction-page.component";
+import {ProfilePageEditComponent} from "./user/profile-page-edit/profile-page-edit.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'settings/:id', component: SettingsComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'transaction', component: TransactionComponent },
+  { path: 'profileEdit', component: ProfilePageEditComponent },
   { path: '', loadComponent: () => import('./layouts/navbar/navbar.component'), outlet: 'navbar'}
 ];
 
