@@ -4,6 +4,7 @@ import { User } from '../../user/model/user';
 import {Observable} from "rxjs";
 import {Chat} from "../../user/chat-class/chat";
 import {Message} from "../../user/message-class/message";
+import {SERVER_HOST} from "../../app.constants";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class SATService {
   private transactionURL: string;
 
   constructor(private http: HttpClient) {
-    this.transactionURL = 'http://localhost:8080/transaction';
+    this.transactionURL = SERVER_HOST + '/transaction';
   }
 
   public submitTransaction(parentID: number, sitterID: number, details: string, startDate: Date, endDate: Date, pay: number): Observable<Boolean> {

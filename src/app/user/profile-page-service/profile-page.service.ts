@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import {SERVER_HOST} from "../../app.constants";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class ProfileService {
   private messageUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/users';
-    this.messageUrl = 'http://localhost:8080/message';
+    this.usersUrl = SERVER_HOST + '/users';
+    this.messageUrl = SERVER_HOST + '/message';
   }
 
   public findUser(userID: Number): Observable<User> {

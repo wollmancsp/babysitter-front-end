@@ -4,9 +4,9 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { MessageService } from '../message-service/message-service.service';
 import { User } from '../model/user';
 import { AccountService } from "../account-service/account-service.service";
-import { Observable, switchMap } from "rxjs";
+import { switchMap } from "rxjs";
 import { Message } from "../message-class/message";
-import {Chat} from "../chat-class/chat";
+import { Chat } from "../chat-class/chat";
 
 @Component({
   selector: 'app-messages',
@@ -21,14 +21,10 @@ export class MessagesComponent implements OnInit {
   protected chatList: Chat[];
   protected chatSelectedID: number = -1;
   @ViewChild('myTextarea') myTextarea: ElementRef;
-  protected tempUserID: number = 8;
   protected usersList: User[];
   accService = inject(AccountService);
   account = this.accService.trackCurrentUser();
   protected refreshInterval: any;
-
-
-
 
   constructor(
     private messsageService: MessageService) {
@@ -48,8 +44,9 @@ export class MessagesComponent implements OnInit {
             //Add all users based on full chat_list
             let userIDsList = [];
             for (let i = 0; i < this.chatList.length; i++)
-              for (let j = 0; j < this.chatList[i].users_id_array.length; j++)
+              for (let j = 0; j < this.chatList[i].users_id_array.length; j++) {
                 userIDsList.push(parseInt(this.chatList[i].users_id_array[j].toString()));
+              }
             return this.messsageService.getUserIDs(userIDsList);
           }else {
             return [];
@@ -106,7 +103,7 @@ export class MessagesComponent implements OnInit {
     if(event.key === 'Enter') {
       let acc = this.account();
       if (acc !== null) {
-        var message = new Message('-1', this.tempUserID.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chatList[this.chatSelectedID].chat_id.toString());
+        var message = new Message('-1', acc.user_id.toString(), this.myTextarea.nativeElement.value, Date.now().toString(), this.chatList[this.chatSelectedID].chat_id.toString());
         this.myTextarea.nativeElement.value = "";
         this.messsageService.sendMessage(message).subscribe(data => {
           this.messsageService.updateChat(this.chatList[this.chatSelectedID].chat_id.toString()).subscribe(data2 => {
@@ -149,12 +146,32 @@ export class MessagesComponent implements OnInit {
 
   protected getUserNameFromID(id: String): String {
     for(let i = 0; i < this.usersList.length; i++) {
-      if(this.usersList[i].user_id.toString() === id.toString())
+      if(this.usersList[i].user_id.toString() == id.toString())
         return this.usersList[i].user_fname + " " + this.usersList[i].user_lname;
     }
     return "";
   }
 
-  protected readonly Chat = Chat;
-  protected readonly parseInt = parseInt;
+  protected dateTimeFormatter(givenDT: String): String {
+    if(givenDT != "") {
+      //2024-11-02T22:58:55.000+00:00
+      let newDT = "";
+      console.log(givenDT);
+      let tempHour = parseInt(givenDT.substring(11, 13));
+      tempHour -= 6; //UTC to Central
+      let timeEnd = "am";
+      if (tempHour > 12) {
+        tempHour -= 12;
+        timeEnd = "pm";
+      }
+      if(tempHour <= 0) {
+        tempHour += 12;
+        timeEnd = "pm";
+      }
+      newDT += tempHour.toString() + givenDT.substring(13, 16) + timeEnd + "  " + givenDT.substring(5, 9) + "-" + givenDT.substring(0, 4);
+      return newDT;
+    }else {
+      return "";
+    }
+  }
 }

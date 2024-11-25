@@ -54,6 +54,17 @@ Angular v0.9.5:
 -Admin Delete & Promote functions are working (Still need to merge with Chris's)
 -A couple quick GUI fixes
 
+Angular v0.9.5.1:
+-Added 'SERVER_HOST' which holds the server connection string to easy change it when hosting on another PC.
+-Fixed Admin Nav Button not loading--> Problem in user transfer in backend from v0.4.9 to v0.5.0 (Missing Variables).
+--Logout Button Fixed? Due to account issue in prev errror.
+-Added *'s to password (input type="password").
+-Formatted Chat/Fixed names appearing, time stamps, and text/image placement.
+-Removed Profile Settings Button
+-Admin Functionality: User Enable/Disable Working
+--Admin page now auto reloads on any action.
+
+
 # TestAngApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
@@ -61,22 +72,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 

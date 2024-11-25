@@ -8,13 +8,13 @@ export class AccountService {
 
   private userIdentity = signal<User | null>(null);
 
-  saveUser(newUser: User | null): void { //WritableSignal<Transaction | null>;
+  saveUser(newUser: User | null): void {
     this.userIdentity.update(user => newUser);
-    // console.log("Curr Acc: " + this.userIdentity);
+    //console.log("Curr Acc: " + this.userIdentity);
   }
 
   trackCurrentUser(): Signal<User | null> {
-    // console.log("Curr Acc Tr: " + this.userIdentity);
+    //console.log("Curr Acc Tr: " + this.userIdentity);
     return this.userIdentity.asReadonly();
   }
 

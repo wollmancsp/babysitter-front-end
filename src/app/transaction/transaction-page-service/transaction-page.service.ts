@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from "rxjs";
-import {Transaction} from "../transaction-model/transaction";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from "rxjs";
+import { Transaction } from "../transaction-model/transaction";
+import { SERVER_HOST } from "../../app.constants";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class TransactionService {
   private transactionURL: string;
 
   constructor(private http: HttpClient) {
-    this.transactionURL = 'http://localhost:8080/transaction';
+    this.transactionURL = SERVER_HOST + '/transaction';
   }
 
   public getAllTransactions(userID: Number): Observable<Transaction[]> {
