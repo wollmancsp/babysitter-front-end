@@ -70,6 +70,9 @@ Angular v0.9.5.2
 -Fixed a bug in the transactions (backend) where .stream caused connections to stay.
 -Add fake users from multiple States (Minneapolis, St.Paul, Bismarck, Des Moines, Sioux Falls)
 
+Angular v0.9.5.3
+-Added Password Reset 
+
 
 # TestAngApp
 
