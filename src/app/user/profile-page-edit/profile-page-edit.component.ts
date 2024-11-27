@@ -19,11 +19,17 @@ export class ProfilePageEditComponent implements OnInit {
   accService = inject(AccountService);
   account = this.accService.trackCurrentUser();
   selectedFile: File;
-  //@ViewChild('selectedFile') selectedFile: ElementRef;
+  user: User;
+  //@ViewChild('selectedFile') selectedFile: HTMLInputElement;
 
   constructor(
       private router: Router,
       private profileService: ProfileService) {
+    this.user = new User();
+    let acc = this.account();
+    if(acc != null) {
+      this.user.user_id = acc.user_id;
+    }
   }
 
   ngOnInit() {
@@ -39,16 +45,21 @@ export class ProfilePageEditComponent implements OnInit {
   //   }
   // }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
   onSubmit() {
     let acc = this.account();
     if(acc != null) {
-      const formData = new FormData();
-      formData.append('userID', acc.user_id);
+      // const formData = new FormData();
+      // formData.append('userID', acc.user_id);
       //formData.append('image', this.selectedFile.nativeElement.value);
-      const reader = new FileReader();
+      // const reader = new FileReader();
 
-      formData.append('image', new Blob([reader.result as ArrayBuffer], { type: this.selectedFile.type }), this.selectedFile.name);
-      this.profileService.EditProfile(formData).subscribe({
+      // formData.append('image', this.selectedFile);
+      // formData.append('fileName', "" + acc.user_id + "." + this.selectedFile.type.replace("image/", ""));
+      this.profileService.EditProfile(this.user).subscribe({
         complete: () => {
           if (!this.router.getCurrentNavigation()) {
             this.router.navigate(['profile', acc.user_id]);

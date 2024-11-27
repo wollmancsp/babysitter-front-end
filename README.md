@@ -64,6 +64,12 @@ Angular v0.9.5.1:
 -Admin Functionality: User Enable/Disable Working
 --Admin page now auto reloads on any action.
 
+Angular v0.9.5.2
+-User session saved so refresh doesn't kill login or other user actions. (https://www.youtube.com/watch?v=amdlyRpNiLw)
+-Updated GUI for all pages
+-Fixed a bug in the transactions (backend) where .stream caused connections to stay.
+-Add fake users from multiple States (Minneapolis, St.Paul, Bismarck, Des Moines, Sioux Falls)
+
 
 # TestAngApp
 

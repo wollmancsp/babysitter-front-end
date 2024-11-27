@@ -18,4 +18,7 @@ export class FABService {
   public searchByCity(city: String): Observable<User[]> {
     return this.http.get<User[]>(`${this.usersUrl}/SearchByCity/${city}`);
   }
+  public randomSearchByCity(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.usersUrl}/RandomSearchByCity`);
+  }
 }

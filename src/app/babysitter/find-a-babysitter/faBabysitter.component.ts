@@ -24,6 +24,7 @@ export class FABabysitterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initSearch();
   }
 
   protected submitSearch(event: KeyboardEvent): void {
@@ -31,11 +32,12 @@ export class FABabysitterComponent implements OnInit {
       this.fABService.searchByCity(this.myInputArea.nativeElement.value).subscribe(data => {
         this.babysitterResultsList = data;
       });
-
-      let acc = this.account();
-      if (acc !== null) {
-
-      }
     }
+  }
+
+  protected initSearch(): void {
+    this.fABService.randomSearchByCity().subscribe(data => {
+      this.babysitterResultsList = data;
+    });
   }
 }

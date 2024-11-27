@@ -10,6 +10,31 @@
 
 
 /*##### Beginning of Class Selectors #####*/
+.InputField {
+  width: 33%;
+  padding: 4px;
+  margin: 0 5px;
+  box-sizing: border-box;
+  border-color: lightblue;
+  border-style: solid;
+  border-radius: 4px;
+}
+
+.labelClass {
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  margin: 5px;
+}
+
+.submitButton {
+  text-align: center;
+  border: 2px solid lightblue;
+  background-color: #ededed;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin: 10px 5px;
+}
 /*##### End of Class Selectors #####*/
 
 

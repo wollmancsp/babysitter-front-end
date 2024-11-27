@@ -10,14 +10,24 @@ a {
   display: inline-block;
   text-decoration: none;
   padding: 8px;
+  background-color: #97aec7;
 }
 
 li{
   display: inline;
+  margin: 0.25vw;
 }
 
 li a:hover {
   background-color: #909090;
+  border-radius: 3px;
+  color: darkblue;
+}
+a:link {
+  color: black;
+}
+a:visited {
+  color: black;
 }
 
 ul {
@@ -25,7 +35,7 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #dedede;
+  background-color: #97aec7;
 }
 /*##### End of Element Selectors #####*/
 
@@ -36,7 +46,6 @@ ul {
 }
 
 .navbar {
-  padding: 0.2rem 1rem;
 }
 
 .navSignIn {

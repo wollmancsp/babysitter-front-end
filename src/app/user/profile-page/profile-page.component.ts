@@ -6,6 +6,7 @@ import { User } from '../model/user';
 import { AccountService } from '../account-service/account-service.service';
 import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
+import {resolve} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-profile-page',
@@ -23,6 +24,7 @@ export class ProfilePageComponent implements OnInit {
   createChatError: Signal<Boolean> = signal(false);
   image: any;
   @ViewChild('myImg') myImg: HTMLImageElement;
+  imageUrl: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +43,18 @@ export class ProfilePageComponent implements OnInit {
         if(acc !== null) {
           this.viewedAccountNumber = parseInt(acc.user_id);
           this.viewedAccount = acc;
-          this.ImageConvert(acc.user_profilepicture)
+          // this.ImageConvert(acc.user_profilepicture);
+          // this.image = this.accService.getUserPfp();
+          // console.log(this.image);
+
+          let file = this.accService.getUserPfp();
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.imageUrl = e.target.result;
+          };
+          reader.readAsDataURL(file);
+
+
         }
       }
     });
@@ -76,20 +89,9 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
-  protected ImageConvert(file: number[] | undefined) {
-    console.log(file);
-    // console.log(typeof file);
-
+  protected ImageConvert(file: string | undefined) {
     if(file != undefined) {
-      const base64String = btoa(encodeURIComponent(String.fromCharCode.apply(null, file)));
-      // var base64String = decodeURIComponent(escape(window.atob(String.fromCharCode.apply(null, file))));
-      const imageUrl = `data:image/jpeg;base64,${base64String}`;
-      this.myImg = new Image();
-      this.myImg.src = imageUrl;
-      console.log(this.myImg.src);
+      this.image = file;
     }
-
-
-    // console.log(this.image);
   }
 }

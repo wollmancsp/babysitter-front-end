@@ -6,8 +6,21 @@
 
 
 /*##### Beginning of Element Selectors #####*/
+h1 {
+  text-align: center;
+}
+
 ul {
 	list-style-type: none;
+}
+
+textarea {
+  text-align: center;
+  border: 2px solid lightblue;
+  background-color: #ededed;
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin: 10px;
 }
 /*##### End of Element Selectors #####*/
 
@@ -18,7 +31,7 @@ ul {
 }
 
 .babysitterBox {
-	min-height: 10vh;
+	min-height: 25vh;
 	img {
 		height: 16vh;
 		width: 16vh;
@@ -30,7 +43,7 @@ ul {
 	color: black;
 	background-color: #dedede;
 	margin: 5px 0px;
-	border-radius: 2px;
+	border-radius: 5px;
     position: relative;
 
     display: grid;
@@ -39,14 +52,13 @@ ul {
 }
 
 .innerMessageBox {
-  // margin: -1% 0px;
   margin: 1% 0;
   width: 94%;
-  // max-height: 98%;
-  //height: 50%;
-  //min-height: 77%;
-  flex-direction: column;
-  // overflow: scroll;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  li {
+    padding: 0 5px;
+  }
 }
 
 .noAddressLoaded {
@@ -62,8 +74,18 @@ ul {
 
 }
 
-.searchBox {
+.profileButton {
+  margin: auto;
+  button {
+    border-radius: 10px;
+  }
+  button:hover {
+    background-color: lightgray;
+  }
+}
 
+.searchBox {
+  text-align: center;
 }
 
 .wages {

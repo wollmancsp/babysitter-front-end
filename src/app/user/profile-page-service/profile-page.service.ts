@@ -39,7 +39,7 @@ export class ProfileService {
   //   return this.http.post<Boolean>(`${this.usersUrl}/ToggleUserEnabled`, file, { headers: headers, params: params});
   // }
 
-  public EditProfile(formData: FormData): Observable<Boolean> {
-    return this.http.post<Boolean>(`${this.usersUrl}/EditUserProfile`, formData);
+  public EditProfile(user: User): Observable<Boolean> { //formData: FormData
+    return this.http.post<Boolean>(`${this.usersUrl}/EditUserProfile`, user);
   }
 }

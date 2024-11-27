@@ -56,16 +56,17 @@ img {
 	padding: 0;
 }
 
-.detailsList{
-	display: grid;
-    gap: 15px 10px;
-    grid-template-columns: 50% 50%; /* Width */
-    grid-template-rows: auto; /* Height */
-}
-
-.detailsList p{
-	margin: 0;
-	padding: 0;
+.detailsList {
+  margin-left: 25%;
+  margin-top: auto;
+  margin-bottom: auto;
+  h4 {
+    display: inline-block;
+    width: 40%;
+  }
+  p {
+    display: inline;
+  }
 }
 
 .friendButton {
@@ -107,6 +108,7 @@ img {
 	max-width: 100%;
 	background-color: rgb(233, 233, 233);
 	margin: auto;
+  min-height: 92vh;
 }
 
 .perHour {
@@ -174,7 +176,7 @@ img {
     width: 100%;
     display: grid;
     gap: 10px 10px;
-    grid-template-columns: 20% 60% 20%; /* Width */
+    grid-template-columns: 30% 50%; /* Width */
     grid-template-rows: 10pc; /* Height */
 }
 

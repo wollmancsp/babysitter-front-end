@@ -3,7 +3,7 @@
     <div class="outerSplit">
       <div class="headerFormatting">
         <div>
-          <img #myImg />
+          <img [src]="imageUrl" alt="" #myImg />
         </div>
         <div class="posRelDiv">
           <div class="mainPageTextDiv posAbsDiv">
@@ -57,23 +57,26 @@
               {{viewedAccount.user_city + " " + viewedAccount.user_zip}}
             </p>
           </div>
+
         </div>
+        <div class="detailsList">
+          <h4>Phone Number:</h4>
+          <p>
+            {{viewedAccount.user_phone}}
+          </p>
+          <br>
+          <br>
+          <br>
+          <h4>Email: </h4>
+          <p>
+            {{viewedAccount.user_emailaddress}}
+          </p>
+      </div>
       </div>
 
       <hr>
 
       <div class="aboutMeSection">
-        <h3>
-          Preferences:
-        </h3>
-        <div class="detailsList">
-          <p>
-            Phone Number: {{viewedAccount.user_phone}}
-          </p>
-          <p>
-            Email: {{viewedAccount.user_emailaddress}}
-          </p>
-        </div>
       </div>
     </div>
   }
