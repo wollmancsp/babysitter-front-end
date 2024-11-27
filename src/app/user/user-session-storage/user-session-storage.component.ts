@@ -10,7 +10,7 @@ export class UserSessionStorageService implements OnInit {
 
   constructor() {
     // console.log("Loaded: " + this.userProfileData);
-    const data = localStorage.getItem('userProfileData');
+    const data = sessionStorage.getItem('userProfileData');
     if(data) {
       this.userProfileData = JSON.parse(data);
     }
@@ -26,6 +26,6 @@ export class UserSessionStorageService implements OnInit {
   saveUserData(user: User | null): void {
     // console.log("Saved" + user?.user_id);
     this.userProfileData = user;
-    localStorage.setItem('userProfileData', JSON.stringify(user));
+    sessionStorage.setItem('userProfileData', JSON.stringify(user));
   }
 }

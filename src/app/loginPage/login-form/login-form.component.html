@@ -30,6 +30,7 @@
       @if (authenticationError()) {
         <div class="alert">
           <strong>Failed to sign in!</strong> Invalid email or password.
+          <a class="clickableLink" routerLink="/resetPass">Forgot your password?</a>
         </div>
       }
 
