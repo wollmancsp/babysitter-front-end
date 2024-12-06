@@ -1,12 +1,10 @@
-import {Component, ElementRef, inject, OnInit, signal, Signal, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, signal, Signal, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProfileService } from '../profile-page-service/profile-page.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { User } from '../model/user';
 import { AccountService } from '../account-service/account-service.service';
 import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
-import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {resolve} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-profile-page',
@@ -29,8 +27,7 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
       private router: Router,
-      private profileService: ProfileService,
-      private sanitizer: DomSanitizer) {
+      private profileService: ProfileService) {
 
     this.route.params.subscribe( params => {
       if(params['userid'] != undefined && params['userid'] != null) {
@@ -43,21 +40,17 @@ export class ProfilePageComponent implements OnInit {
         if(acc !== null) {
           this.viewedAccountNumber = parseInt(acc.user_id);
           this.viewedAccount = acc;
-          // this.ImageConvert(acc.user_profilepicture);
-          // this.image = this.accService.getUserPfp();
-          // console.log(this.image);
-
-          let file = this.accService.getUserPfp();
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
-            this.imageUrl = e.target.result;
-          };
-          reader.readAsDataURL(file);
-
-
         }
       }
     });
+    if(this.viewedAccountNumber != null) {
+      let acc = this.account();
+      if (acc !== null) {
+        this.imageUrl = "http://localhost:8080/profilePicture/" + acc.user_profilepicture;// + "?" + Date.now();
+      }
+    }else {
+      this.imageUrl = "pfp/defaultUserAvatar.jpg";
+    }
   }
 
   ngOnInit() {
@@ -94,4 +87,6 @@ export class ProfilePageComponent implements OnInit {
       this.image = file;
     }
   }
+
+  protected readonly Math = Math;
 }

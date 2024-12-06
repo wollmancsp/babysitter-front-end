@@ -30,15 +30,18 @@ export class AccountService implements OnInit{
     if (newUser)
       this.userSession.saveUserData(newUser);
     //console.log("Curr Acc: " + this.userIdentity);
-    this.pullUserPfp().subscribe(data => {
-      this.userPfp = data;
-      console.log("Loaded: " + this.userPfp);
-      // console.log("Found: " + data);
-    });
   }
 
-  pullUserPfp(): Observable<File> {
-    return this.http.get<File>(`${this.usersUrl}/ReturnPfp/${this.userIdentity()?.user_profilepicture}`);
+  updateUser(): Observable<User> {
+    let temp = this.http.get<User>(`${this.usersUrl}/FindByUserID/${this.userIdentity()?.user_id}`);
+    //console.log("T: " + temp);
+    temp.subscribe(
+      data => {
+        console.log("T: " + data),
+        this.userSession.saveUserData(data);
+      }
+    )
+    return temp;
   }
 
   trackCurrentUser(): Signal<User | null> {
@@ -46,21 +49,8 @@ export class AccountService implements OnInit{
     return this.userIdentity.asReadonly();
   }
 
-  hasAdminAuthority(): boolean {
-    const userIdentity = this.userIdentity();
-    if (!userIdentity) {
-      return false;
-    }
-    return userIdentity.user_role;
-  }
-
   logout(): void {
     this.userIdentity.update(user => null);
     this.userSession.saveUserData(null);
-  }
-
-  getUserPfp(): File {
-    console.log("Name: " + this.userPfp.name);
-    return this.userPfp;
   }
 }

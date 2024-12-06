@@ -35,15 +35,24 @@ export class ProfilePageEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  // protected uploadPFP(userID: string) {
-  //   if (this.selectedFile) {
-  //     const formData = new FormData();
-  //     formData.append('image', this.selectedFile, this.selectedFile.name);
-  //     //this.profileService.UploadPFP(formData, parseInt(userID)).subscribe(data => {
-  //
-  //     //});
-  //   }
-  // }
+  protected uploadPFP(userID: string) {
+    let acc = this.account();
+    if(acc != null) {
+      if (this.selectedFile) {
+        const formData = new FormData();
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+        this.profileService.UploadPFP(formData, parseInt(userID)).subscribe(data => {
+          this.accService.updateUser().subscribe({
+            complete: () => {
+              if (!this.router.getCurrentNavigation()) {
+                this.router.navigate(['profile', acc.user_id]);
+              }
+            },
+          });
+        });
+      }
+    }
+  }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -59,12 +68,13 @@ export class ProfilePageEditComponent implements OnInit {
 
       // formData.append('image', this.selectedFile);
       // formData.append('fileName', "" + acc.user_id + "." + this.selectedFile.type.replace("image/", ""));
+      this.uploadPFP(this.user.user_id);
       this.profileService.EditProfile(this.user).subscribe({
-        complete: () => {
-          if (!this.router.getCurrentNavigation()) {
-            this.router.navigate(['profile', acc.user_id]);
-          }
-        },
+        // complete: () => {
+        //   if (!this.router.getCurrentNavigation()) {
+        //     this.router.navigate(['profile', acc.user_id]);
+        //   }
+        // },
       });
     }
   }

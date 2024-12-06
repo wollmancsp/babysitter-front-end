@@ -29,15 +29,15 @@ export class ProfileService {
     return this.http.post<Boolean>(`${this.messageUrl}/ChatCreate`,params);
   }
 
-  // public UploadPFP(file: FormData, userID: number): Observable<Boolean> {
-  //   const params = new HttpParams()
-  //     .set('p1', userID);
-  //   let headers = new HttpHeaders();
-  //   /** In Angular 5, including the header Content-Type can invalidate your request */
-  //   headers.append('Content-Type', 'multipart/form-data');
-  //   headers.append('Accept', 'application/json');
-  //   return this.http.post<Boolean>(`${this.usersUrl}/ToggleUserEnabled`, file, { headers: headers, params: params});
-  // }
+  public UploadPFP(file: FormData, userID: number): Observable<Boolean> {
+    const params = new HttpParams()
+      .set('p1', userID);
+    let headers = new HttpHeaders();
+    /** In Angular 5, including the header Content-Type can invalidate your request */
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    return this.http.post<Boolean>(`${this.usersUrl}/setUserPFP`, file, { headers: headers, params: params});
+  }
 
   public EditProfile(user: User): Observable<Boolean> { //formData: FormData
     return this.http.post<Boolean>(`${this.usersUrl}/EditUserProfile`, user);

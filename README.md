@@ -73,6 +73,15 @@ Angular v0.9.5.2
 Angular v0.9.5.3
 -Added Password Reset 
 
+Angular v0.9.5.4:
+-Got PFPs working!
+--https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot
+--https://stackoverflow.com/questions/24916894/serving-static-web-resources-in-spring-boot-spring-security-application
+--NOTE: Error with image reloading not working
+---Img of same file type does not reload unless you view the file in Springboot first
+---All imgs don't reload unless you reload the page manually (timestamp doesn't work).
+---https://stackoverflow.com/questions/52316142/how-to-refresh-an-image-with-angular
+
 
 # TestAngApp
 
