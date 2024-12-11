@@ -154,7 +154,7 @@ export class MessagesComponent implements OnInit {
 
   protected dateTimeFormatter(givenDT: String): String {
     if(givenDT != "") {
-      //2024-11-02T22:58:55.000+00:00
+      //Format: 2024-11-02T22:58:55.000+00:00
       let newDT = "";
       console.log(givenDT);
       let tempHour = parseInt(givenDT.substring(11, 13));

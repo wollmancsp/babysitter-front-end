@@ -1,7 +1,7 @@
 import {inject, Injectable, OnInit, signal, Signal} from '@angular/core';
 import { User } from '../model/user';
 import {HttpClient} from "@angular/common/http";
-import {SERVER_HOST} from "../../app.constants";
+import {SERVER_HOST} from "../../core/app.constants";
 import {Observable} from "rxjs";
 import {UserSessionStorageService} from "../user-session-storage/user-session-storage.component";
 
@@ -34,7 +34,6 @@ export class AccountService implements OnInit{
 
   updateUser(): Observable<User> {
     let temp = this.http.get<User>(`${this.usersUrl}/FindByUserID/${this.userIdentity()?.user_id}`);
-    //console.log("T: " + temp);
     temp.subscribe(
       data => {
         console.log("T: " + data),
@@ -45,7 +44,6 @@ export class AccountService implements OnInit{
   }
 
   trackCurrentUser(): Signal<User | null> {
-    //console.log("Curr Acc Tr: " + this.userIdentity);
     return this.userIdentity.asReadonly();
   }
 

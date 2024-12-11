@@ -25,6 +25,10 @@ p {
   border-radius: 2px;
 }
 
+.InvisibleLI {
+  display: inline;
+}
+
 .JobsYouRequested {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -52,16 +56,16 @@ p {
   overflow: hidden;
 }
 
+.SelectorA:hover {
+  background-color: #909090;
+}
+
 .SelectorAnonSEL {
-  background-color: lightgray;
+  background-color: lightgray !important;
 }
 
 .SelectorASEL {
-  background-color: #b3b3b3;
-}
-
-.SelectorA:hover {
-  background-color: #909090;
+  background-color: #b3b3b3 !important;
 }
 
 .SelectorLI {

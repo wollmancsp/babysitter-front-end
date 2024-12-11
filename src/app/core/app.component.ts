@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { fontAwesomeIcons } from './config/font-awesome-icons';
-import {AccountService} from "./user/account-service/account-service.service";
+import { fontAwesomeIcons } from '../config/font-awesome-icons';
+import {AccountService} from "../user/account-service/account-service.service";
 
 @Component({
   selector: 'app-root',

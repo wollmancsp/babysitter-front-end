@@ -13,6 +13,7 @@
           placeholder="Your email"
           name="email"
           title="email"
+          required
         />
       </div>
 
@@ -25,6 +26,7 @@
           class="InputField inputPassword"
           name="password"
           placeholder="Your password"
+          required
         />
       </div>
 
@@ -37,6 +39,7 @@
           class="InputField inputEmail"
           name="phone"
           placeholder="Your phone"
+          required
         />
       </div>
 
@@ -49,6 +52,7 @@
           class="InputField inputFirstName"
           name="firstName"
           placeholder="Your first name"
+          required
         />
       </div>
 
@@ -61,6 +65,7 @@
           class="InputField inputLastName"
           name="lastName"
           placeholder="Your last name"
+          required
         />
       </div>
 
@@ -75,7 +80,12 @@
 
   @if (authenticationError()) {
     <div class="alert">
-      <strong>Failed to sign in!</strong> Invalid email or password.
+      <p class="Notice"><strong>Failed to sign in!</strong> Invalid email or password.</p>
+    </div>
+  }
+  @if (allDataInput()) {
+    <div class="alert">
+     <p class="Notice"><strong>Failed to create account!</strong> Please check that all data fields are filled in.</p>
     </div>
   }
 </div>

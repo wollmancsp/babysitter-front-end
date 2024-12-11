@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../user/model/user';
 import {Observable} from "rxjs";
-import {SERVER_HOST} from "../../app.constants";
+import {SERVER_HOST} from "../../core/app.constants";
 
 @Injectable({
   providedIn: 'root'

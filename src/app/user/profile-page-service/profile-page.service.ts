@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
-import {SERVER_HOST} from "../../app.constants";
+import {SERVER_HOST} from "../../core/app.constants";
 import {formatDate} from "@angular/common";
 
 @Injectable({

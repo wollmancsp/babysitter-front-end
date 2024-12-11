@@ -82,6 +82,16 @@ Angular v0.9.5.4:
 ---All imgs don't reload unless you reload the page manually (timestamp doesn't work).
 ---https://stackoverflow.com/questions/52316142/how-to-refresh-an-image-with-angular
 
+Angular v0.9.5.4.1:
+-Bug Fixes and QOL Improvements
+
+Angular v0.9.5.5:
+-Core directory Added
+--https://medium.com/@marketing_26756/angular-best-practices-tips-for-project-structure-and-organization-490ca7950829
+-Cleaned up code in both front-end and back-end
+-Added registration error if not all fields filled in.
+-Added Transaction organizer notifications
+
 
 # TestAngApp
 

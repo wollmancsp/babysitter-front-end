@@ -5,7 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { User } from '../model/user';
 import { AccountService } from '../account-service/account-service.service';
 import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
-import {SERVER_HOST} from "../../app.constants";
+import {SERVER_HOST} from "../../core/app.constants";
 
 @Component({
   selector: 'app-profile-page',
@@ -44,22 +44,19 @@ export class ProfilePageComponent implements OnInit {
         }
       }
     });
+
+    this.imageUrl = "pfp/defaultUserAvatar.jpg"; //Implied Else
     if(this.viewedAccountNumber != null) {
       let acc = this.account();
       if (acc !== null) {
         if(acc.user_profilepicture != undefined) {
           this.imageUrl = SERVER_HOST + "/profilePicture/" + acc.user_profilepicture;
-        }else {
-          //If user has not yet set their pfp.
-          this.imageUrl = "pfp/defaultUserAvatar.jpg";
         }
-      }else {
-        //Even if user is not logged in, they should still be able to see the default pfp.
-        this.imageUrl = "pfp/defaultUserAvatar.jpg";
+        //ELSE: If user has not yet set their pfp.
       }
-    }else {
-      this.imageUrl = "pfp/defaultUserAvatar.jpg";
+      //ELSE: Even if user is not logged in, they should still be able to see the default pfp.
     }
+    //ELSE: Glitch on account viewed
   }
 
   ngOnInit() {

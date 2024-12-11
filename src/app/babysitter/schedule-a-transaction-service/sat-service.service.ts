@@ -4,7 +4,7 @@ import { User } from '../../user/model/user';
 import {Observable} from "rxjs";
 import {Chat} from "../../user/chat-class/chat";
 import {Message} from "../../user/message-class/message";
-import {SERVER_HOST} from "../../app.constants";
+import {SERVER_HOST} from "../../core/app.constants";
 
 @Injectable({
   providedIn: 'root'
