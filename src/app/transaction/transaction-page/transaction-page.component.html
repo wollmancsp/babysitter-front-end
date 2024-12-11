@@ -36,7 +36,7 @@
         </ul>
       </div>
       <div>
-        <ul *ngIf="selectedTransactionList.length > 0" class="DisplayUL">
+        <ul *ngIf="selectedTransactionList.length > 0; else noTransactions" class="DisplayUL">
           <li *ngFor="let item of selectedTransactionList" class="DisplayLI">
             <p>Transaction ID: {{item.job_id}}</p>
             <p>Parent: {{item.job_parent}}</p>
@@ -58,6 +58,9 @@
             </div>
           </li>
         </ul>
+        <ng-template #noTransactions>
+          <p class="Notice">No Transactions currently within this range!</p>
+        </ng-template>
       </div>
     </div>
   }

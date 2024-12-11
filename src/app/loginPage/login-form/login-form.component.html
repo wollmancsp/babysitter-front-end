@@ -33,6 +33,11 @@
           <a class="clickableLink" routerLink="/resetPass">Forgot your password?</a>
         </div>
       }
+      @if (userEnabledError()) {
+        <div class="alert">
+          <strong>Warning!</strong> User has been disabled. Contact support if this was unexpected.
+        </div>
+      }
 
       <button type="button" class="" (click)="submitLogin()">Sign in</button>
 

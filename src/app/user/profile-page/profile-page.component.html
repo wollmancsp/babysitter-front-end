@@ -17,11 +17,13 @@
         </div>
         <div class="posRelDiv">
           <div class="posAbsDiv">
-            <span>
-              <button type="button" (click)="EditProfile()">
-                Edit Profile
-              </button>
-            </span>
+            <div *ngIf="account() != null && viewedAccount.user_id == account()?.user_id">
+              <span>
+                <button type="button" (click)="EditProfile()">
+                  Edit Profile
+                </button>
+              </span>
+            </div>
             <br>
             <span>
               <button type="button" (click)="createNewTransaction()">
