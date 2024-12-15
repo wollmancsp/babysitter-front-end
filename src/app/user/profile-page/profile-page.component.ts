@@ -50,7 +50,9 @@ export class ProfilePageComponent implements OnInit {
       let acc = this.account();
       if (acc !== null) {
         if(acc.user_profilepicture != undefined) {
-          this.imageUrl = SERVER_HOST + "/profilePicture/" + acc.user_profilepicture;
+          //this.imageUrl = SERVER_HOST + "/profilePicture/" + acc.user_profilepicture;
+          //this.imageUrl = SERVER_HOST + "/users/getPfp/" + acc.user_id;
+          this.imageUrl = SERVER_HOST + "/users/getPfp?param1=" + acc.user_id + "&param2=" + Date.now();
         }
         //ELSE: If user has not yet set their pfp.
       }

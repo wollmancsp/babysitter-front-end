@@ -85,13 +85,17 @@ Angular v0.9.5.4:
 Angular v0.9.5.4.1:
 -Bug Fixes and QOL Improvements
 
-Angular v0.9.5.5:
+Angular v0.9.5.4.2:
 -Core directory Added
 --https://medium.com/@marketing_26756/angular-best-practices-tips-for-project-structure-and-organization-490ca7950829
 -Cleaned up code in both front-end and back-end
 -Added registration error if not all fields filled in.
 -Added Transaction organizer notifications
 
+Angular v0.9.5.4.3:
+-Fixed PFPs updating properly!
+--The main issue was IntelliJ was building the inner files only once, and updates weren't live until I opened the app.
+--However, through using the target folder with IntelliJ, the updates were active and live, not built, which made the links work properly.
 
 # TestAngApp
 

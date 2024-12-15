@@ -170,7 +170,7 @@ export class TransactionComponent implements OnInit, AfterViewInit{
       canvas.style.top = "-15px";
       canvas.style.position = "relative";
 
-      ctx.fillStyle = 'red'; //#97aec7??
+      ctx.fillStyle = '#97aec7'; //#97aec7??
       ctx.beginPath();
       ctx.arc(10, 10, 10, 0, 2 * Math.PI);
       ctx.fill();
