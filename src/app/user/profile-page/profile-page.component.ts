@@ -45,20 +45,11 @@ export class ProfilePageComponent implements OnInit {
       }
     });
 
-    this.imageUrl = "pfp/defaultUserAvatar.jpg"; //Implied Else
     if(this.viewedAccountNumber != null) {
-      let acc = this.account();
-      if (acc !== null) {
-        if(acc.user_profilepicture != undefined) {
-          //this.imageUrl = SERVER_HOST + "/profilePicture/" + acc.user_profilepicture;
-          //this.imageUrl = SERVER_HOST + "/users/getPfp/" + acc.user_id;
-          this.imageUrl = SERVER_HOST + "/users/getPfp?param1=" + acc.user_id + "&param2=" + Date.now();
-        }
-        //ELSE: If user has not yet set their pfp.
-      }
-      //ELSE: Even if user is not logged in, they should still be able to see the default pfp.
+      this.imageUrl = SERVER_HOST + "/users/getPfp?param1=" + this.viewedAccountNumber + "&param2=" + Date.now();
+    }else {
+      this.imageUrl = "pfp/defaultUserAvatar.jpg";
     }
-    //ELSE: Glitch on account viewed
   }
 
   ngOnInit() {

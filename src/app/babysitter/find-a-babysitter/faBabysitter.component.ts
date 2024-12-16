@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import {AccountService} from "../../user/account-service/account-service.service";
 import {FABService} from "../find-a-babysitter-service/find-a-babysitter-service.service";
 import { User } from '../../user/model/user';
+import {SERVER_HOST} from "../../core/app.constants";
 
 @Component({
   selector: 'app-find-a-babysitter',
@@ -40,4 +41,7 @@ export class FABabysitterComponent implements OnInit {
       this.babysitterResultsList = data;
     });
   }
+
+  protected readonly SERVER_HOST = SERVER_HOST;
+  protected readonly Date = Date;
 }

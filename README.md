@@ -96,6 +96,7 @@ Angular v0.9.5.4.3:
 -Fixed PFPs updating properly!
 --The main issue was IntelliJ was building the inner files only once, and updates weren't live until I opened the app.
 --However, through using the target folder with IntelliJ, the updates were active and live, not built, which made the links work properly.
+-Added properly linked profile pictures to findABabysitter page.
 
 # TestAngApp
 
