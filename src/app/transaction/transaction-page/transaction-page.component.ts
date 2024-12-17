@@ -22,6 +22,7 @@ export class TransactionComponent implements OnInit, AfterViewInit{
   protected timeSelectorNum: number = 1;
   protected fullTransactionList: Array<Transaction> = [];
   protected selectedTransactionList: Array<Transaction> = [];
+  protected readonly parseInt = parseInt;
 
   @ViewChild('canvasJobReq') canvasJobReq: ElementRef;
   @ViewChild('canvasJobWork') canvasJobWork: ElementRef;
@@ -275,5 +276,27 @@ export class TransactionComponent implements OnInit, AfterViewInit{
     });
   }
 
-  protected readonly parseInt = parseInt;
+  protected dateTimeFormatter(inputDT: Date): String {
+    if(inputDT != null) {
+      let givenDT = inputDT.toString();
+      if(givenDT != "") {
+        //Format: 2024-11-02T22:58:55.000+00:00
+        let newDT = "";
+        let tempHour = parseInt(givenDT.substring(11, 13));
+        tempHour -= 6; //UTC to Central
+        let timeEnd = "am";
+        if (tempHour > 12) {
+          tempHour -= 12;
+          timeEnd = "pm";
+        }
+        if(tempHour <= 0) {
+          tempHour += 12;
+          timeEnd = "pm";
+        }
+        newDT += "  " + givenDT.substring(5, 9) + "-" + givenDT.substring(0, 4) + " " + tempHour.toString() + givenDT.substring(13, 16) + timeEnd;
+        return newDT;
+      }
+    }
+    return "To Be Determined";
+  }
 }

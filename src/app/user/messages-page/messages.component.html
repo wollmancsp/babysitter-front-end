@@ -38,7 +38,7 @@
               <h5>{{ getUserNameFromID(message.user_id) }}</h5>
               <p class="messageTime">{{ dateTimeFormatter(message.message_time) }}</p>
               <br>
-              <img src="\speechBubbleMessage.png" alt = ""/>
+              <img [src]="SERVER_HOST + '/users/getPfp?param1=' + message.user_id + '&param2=' + Date.now()" alt = ""/>
               <p class="messageText">{{ message.message_text }}</p>
             </div>
           </li>

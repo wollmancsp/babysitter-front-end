@@ -39,7 +39,7 @@ export class ProfileService {
     return this.http.post<Boolean>(`${this.usersUrl}/setUserPFP`, file, { headers: headers, params: params});
   }
 
-  public EditProfile(user: User): Observable<Boolean> { //formData: FormData
+  public EditProfile(user: User): Observable<Boolean> {
     return this.http.post<Boolean>(`${this.usersUrl}/EditUserProfile`, user);
   }
 }

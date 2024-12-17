@@ -7,6 +7,7 @@ import { AccountService } from "../account-service/account-service.service";
 import { switchMap } from "rxjs";
 import { Message } from "../message-class/message";
 import { Chat } from "../chat-class/chat";
+import {SERVER_HOST} from "../../core/app.constants";
 
 @Component({
   selector: 'app-messages',
@@ -25,6 +26,8 @@ export class MessagesComponent implements OnInit {
   accService = inject(AccountService);
   account = this.accService.trackCurrentUser();
   protected refreshInterval: any;
+  protected readonly SERVER_HOST = SERVER_HOST;
+  protected readonly Date = Date;
 
   constructor(
     private messsageService: MessageService) {
@@ -156,7 +159,6 @@ export class MessagesComponent implements OnInit {
     if(givenDT != "") {
       //Format: 2024-11-02T22:58:55.000+00:00
       let newDT = "";
-      console.log(givenDT);
       let tempHour = parseInt(givenDT.substring(11, 13));
       tempHour -= 6; //UTC to Central
       let timeEnd = "am";

@@ -12,7 +12,7 @@
     <ul class="innerMessageBox" *ngIf="citySearch !== null;">
       <li *ngFor="let box of babysitterResultsList">
         <div class="babysitterBox">
-          <img [src]="SERVER_HOST + '/users/getPfp?param1=' + box.user_id + '&param2=' + Date.now()" alt = ""/> <!-- \defaultUserAvatar-NOBG.png -->
+          <img [src]="SERVER_HOST + '/users/getPfp?param1=' + box.user_id + '&param2=' + Date.now()" alt = ""/>
           <div class="profileTextBox">
             <h5>{{ box.user_fname }} {{ box.user_lname }}</h5>
             <p class="addressLine">{{ box.user_address }}</p>

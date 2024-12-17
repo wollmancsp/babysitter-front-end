@@ -64,10 +64,10 @@
             <p>Parent: {{item.job_parent}}</p>
             <p>Sitter: {{item.job_sitter}}</p>
             <p>Details: {{item.job_details}}</p>
-            <p>Created Date: {{item.job_created}}</p>
-            <p>Accepted Date: {{item.job_acceptedDate}}</p>
-            <p>Start Date: {{item.job_start}}</p>
-            <p>End Date: {{item.job_end}}</p>
+            <p>Created Date: {{dateTimeFormatter(item.job_created)}}</p>
+            <p>Accepted Date: {{dateTimeFormatter(item.job_acceptedDate)}}</p>
+            <p>Start Date: {{dateTimeFormatter(item.job_start)}}</p>
+            <p>End Date: {{dateTimeFormatter(item.job_end)}}</p>
             <p>Pay: {{item.job_pay}}</p>
             <p>Transaction Status: {{item.job_status}}</p>
             <div *ngIf="item.job_status == 0 && statusSelectorNum === 0 && jobSelectorNum === 1 && timeSelectorNum === 1">

@@ -98,6 +98,15 @@ Angular v0.9.5.4.3:
 --However, through using the target folder with IntelliJ, the updates were active and live, not built, which made the links work properly.
 -Added properly linked profile pictures to findABabysitter page.
 
+Angular v0.9.5.4.4:
+-Added back the profile 'About Me'
+--Fixed submit button not rerouting to profile page?
+-Fixed profile edit bug where it didn't properly reroute to profile page.
+-Changed 'Settings' page to 'Profile'
+-Reformatted Transaction Dates
+-Added profile pictures to messages.
+-Edited homepage description.
+
 # TestAngApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.

@@ -45,7 +45,7 @@ export class ProfilePageEditComponent implements OnInit {
           this.accService.updateUser().subscribe({
             complete: () => {
               if (!this.router.getCurrentNavigation()) {
-                this.router.navigate(['profile', acc.user_id]);
+                this.router.navigate(['/settings', 0]);
               }
             },
           });
@@ -61,20 +61,13 @@ export class ProfilePageEditComponent implements OnInit {
   onSubmit() {
     let acc = this.account();
     if(acc != null) {
-      // const formData = new FormData();
-      // formData.append('userID', acc.user_id);
-      //formData.append('image', this.selectedFile.nativeElement.value);
-      // const reader = new FileReader();
-
-      // formData.append('image', this.selectedFile);
-      // formData.append('fileName', "" + acc.user_id + "." + this.selectedFile.type.replace("image/", ""));
       this.uploadPFP(this.user.user_id);
       this.profileService.EditProfile(this.user).subscribe({
-        // complete: () => {
-        //   if (!this.router.getCurrentNavigation()) {
-        //     this.router.navigate(['profile', acc.user_id]);
-        //   }
-        // },
+        complete: () => {
+          if (!this.router.getCurrentNavigation()) {
+            this.router.navigate(['/settings', 0]);
+          }
+        },
       });
     }
   }
