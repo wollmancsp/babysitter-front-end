@@ -2,29 +2,45 @@
   Organized Alphabetically: Please try to keep it this way
 */
 
-/*##### Beginning of Top Navigation Bar Styles #####*/
+/*##### Beginning of Profile Page Styles #####*/
 
 
 /*##### Beginning of Element Selectors #####*/
+
+input[type=file]::file-selector-button {
+  display: none;
+}
 /*##### End of Element Selectors #####*/
 
 
 /*##### Beginning of Class Selectors #####*/
+.form {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
 .InputField {
   width: 33%;
   padding: 4px;
-  margin: 0 5px;
+  margin: 2px;
   box-sizing: border-box;
   border-color: lightblue;
   border-style: solid;
   border-radius: 4px;
 }
 
+.InputPFP {
+  border: 2px solid lightblue;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #ededed;
+}
+
 .labelClass {
   font-size: 12px;
   font-weight: bold;
   display: block;
-  margin: 5px;
 }
 
 .submitButton {
@@ -33,7 +49,7 @@
   background-color: #ededed;
   padding: 10px 20px;
   border-radius: 4px;
-  margin: 10px 5px;
+  margin: 200px 2px 2px 2px;
 }
 /*##### End of Class Selectors #####*/
 

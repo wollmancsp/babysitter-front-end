@@ -7,14 +7,8 @@
         <th>Transaction First & Last</th>
         <th>Promote to Admin?</th>
         <th>Delete?</th>
+        <th>Enabled?</th>
       </tr>
-      <!-- <tr>
-        <td>1</td>
-        <td>testE&#64;mail.com</td>
-        <td>John Doe</td>
-        <td><Button>X</Button></td>
-        <td><Button>X</Button></td>
-      </tr> -->
       <tr *ngFor="let user of userList">
         <td>{{user.user_id}}</td>
         <td>{{user.user_emailaddress}}</td>
@@ -27,6 +21,7 @@
           }
         </td>
         <td><button (click)="DeleteUser(parseInt(user.user_id))">X</button></td>
+        <td><button (click)="ToggleUserEnable(user.user_enabled, parseInt(user.user_id))">{{userEnabledGUI(user.user_enabled)}}</button></td>
       </tr>
     </table>
   }

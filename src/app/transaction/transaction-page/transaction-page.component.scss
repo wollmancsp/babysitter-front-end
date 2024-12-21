@@ -6,6 +6,9 @@
 
 
 /*##### Beginning of Element Selectors #####*/
+p {
+  margin: 5px;
+}
 /*##### End of Element Selectors #####*/
 
 
@@ -20,6 +23,10 @@
   background-color: #dedede;
   margin: 2px 2px;
   border-radius: 2px;
+}
+
+.InvisibleLI {
+  display: inline;
 }
 
 .JobsYouRequested {
@@ -37,6 +44,10 @@
   margin-right: 2vw;
 }
 
+.Notice {
+  text-align: center;
+}
+
 .SelectorA {
   padding: 8px 18px;
   color: black;
@@ -45,16 +56,16 @@
   overflow: hidden;
 }
 
+.SelectorA:hover {
+  background-color: #909090;
+}
+
 .SelectorAnonSEL {
-  background-color: lightgray;
+  background-color: lightgray !important;
 }
 
 .SelectorASEL {
-  background-color: #b3b3b3;
-}
-
-.SelectorA:hover {
-  background-color: #909090;
+  background-color: #b3b3b3 !important;
 }
 
 .SelectorLI {

@@ -1,17 +1,18 @@
-import {Component, inject, OnInit, signal, Signal} from '@angular/core';
+import {Component, inject, OnInit, signal, Signal, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProfileService } from '../profile-page-service/profile-page.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { User } from '../model/user';
 import { AccountService } from '../account-service/account-service.service';
-import {AsyncPipe, NgIf} from "@angular/common";
+import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
+import {SERVER_HOST} from "../../core/app.constants";
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss'],
   standalone: true,
-  imports: [RouterModule, FontAwesomeModule, AsyncPipe, NgIf]
+  imports: [RouterModule, FontAwesomeModule, AsyncPipe, NgIf, NgOptimizedImage]
 })
 export class ProfilePageComponent implements OnInit {
 
@@ -20,6 +21,9 @@ export class ProfilePageComponent implements OnInit {
   viewedAccount: User;
   viewedAccountNumber: Number;
   createChatError: Signal<Boolean> = signal(false);
+  image: any;
+  @ViewChild('myImg') myImg: HTMLImageElement;
+  imageUrl: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +44,12 @@ export class ProfilePageComponent implements OnInit {
         }
       }
     });
+
+    if(this.viewedAccountNumber != null) {
+      this.imageUrl = SERVER_HOST + "/users/getPfp?param1=" + this.viewedAccountNumber + "&param2=" + Date.now();
+    }else {
+      this.imageUrl = "pfp/defaultUserAvatar.jpg";
+    }
   }
 
   ngOnInit() {
@@ -64,4 +74,18 @@ export class ProfilePageComponent implements OnInit {
       this.router.navigate(['scheduleATransaction', this.viewedAccountNumber]);
     }
   }
+
+  protected EditProfile() {
+    if (!this.router.getCurrentNavigation()) {
+      this.router.navigate(['profileEdit']);
+    }
+  }
+
+  protected ImageConvert(file: string | undefined) {
+    if(file != undefined) {
+      this.image = file;
+    }
+  }
+
+  protected readonly Math = Math;
 }

@@ -2,24 +2,24 @@
   <h1>Find A Babysitter</h1>
 
   <div class="searchBox">
+    <label>Search By City:</label>
     <form>
       <textarea title="babysitterSearchBox" (keydown)="submitSearch($event)" #myInputArea></textarea>
     </form>
   </div>
 
   <div class="outerMessageBox">
-    <div class="noAddressLoaded" *ngIf="citySearch === null;"><h2>Click to load a chat!</h2></div>
     <ul class="innerMessageBox" *ngIf="citySearch !== null;">
       <li *ngFor="let box of babysitterResultsList">
         <div class="babysitterBox">
-          <img src="\speechBubbleMessage.png" alt = ""/>
+          <img [src]="SERVER_HOST + '/users/getPfp?param1=' + box.user_id + '&param2=' + Date.now()" alt = ""/>
           <div class="profileTextBox">
             <h5>{{ box.user_fname }} {{ box.user_lname }}</h5>
             <p class="addressLine">{{ box.user_address }}</p>
             <p class="addressLine">{{ box.user_city }} {{ box.user_zip }}</p>
             <p class="wages">Hourly / Daily</p>
           </div>
-          <div><a [routerLink]="['/profile', box.user_id]"><button>View Profile</button></a></div>
+          <div class="profileButton"><a [routerLink]="['/profile', box.user_id]"><button>View Profile</button></a></div>
         </div>
       </li>
     </ul>

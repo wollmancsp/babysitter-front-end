@@ -17,6 +17,7 @@ export class LoginFormComponent implements OnInit {
   @ViewChild('myPassword') myPassword: ElementRef;
 
   authenticationError = signal(false);
+  userEnabledError = signal(false);
   accService = inject(AccountService);
 
   constructor(
@@ -32,10 +33,15 @@ export class LoginFormComponent implements OnInit {
     const sub = this.loginService.submitLogin(loginReq).subscribe(data => {
       this.authenticationError.set(false);
       if(data != null) {
-        this.accService.saveUser(data);
-        if (!this.router.getCurrentNavigation()) {
-          // There were no routing during login (eg from navigationToStoredUrl)
-          this.router.navigate(['']);
+        var userData = data;
+        if(userData.user_enabled) {
+          this.accService.saveUser(userData);
+          if (!this.router.getCurrentNavigation()) {
+            // There were no routing during login (eg from navigationToStoredUrl)
+            this.router.navigate(['']);
+          }
+        }else {
+          this.userEnabledError.set(true)
         }
       }else {
         this.authenticationError.set(true)

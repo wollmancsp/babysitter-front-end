@@ -4,48 +4,70 @@
       <div class="JobTypeSelection">
         <!-- Job Selection Tab -->
         <ul class="SelectorUL">
-          <li class="SelectorLI">
-            <a (click)="selectJob(0)" class="SelectorA" [ngClass]="{'SelectorASEL': jobSelectorNum === 0, 'SelectorAnonSEL' : jobSelectorNum != 0 }">Jobs You Requested</a>
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': jobSelectorNum === 0, 'SelectorAnonSEL' : jobSelectorNum != 0 }" >
+              <a (click)="selectJob(0)" class="SelectorA" >Jobs You Requested</a>
+            </div>
+            <canvas #canvasJobReq width="20" height="20"></canvas> <!-- They will never know the grid spacing is actually the canvas...-->
           </li>
-          <li class="SelectorLI">
-            <a (click)="selectJob(1)" class="SelectorA" [ngClass]="{'SelectorASEL': jobSelectorNum === 1, 'SelectorAnonSEL' : jobSelectorNum != 1 }">Jobs You're Working</a>
+
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': jobSelectorNum === 1, 'SelectorAnonSEL' : jobSelectorNum != 1 }" >
+              <a (click)="selectJob(1)" class="SelectorA" >Jobs You're Working</a>
+            </div>
+            <canvas #canvasJobWork width="20" height="20"></canvas>
           </li>
         </ul>
 
         <!-- Job Status Tab -->
         <ul class="SelectorUL">
-          <li class="SelectorLI">
-            <a (click)="selectStatus(0)" class="SelectorA" [ngClass]="{'SelectorASEL': statusSelectorNum === 0, 'SelectorAnonSEL' : statusSelectorNum != 0 }">Pending</a>
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': statusSelectorNum === 0, 'SelectorAnonSEL' : statusSelectorNum != 0 }" >
+              <a (click)="selectStatus(0)" class="SelectorA" >Pending</a>
+            </div>
+            <canvas #canvasPending width="20" height="20"></canvas>
           </li>
-          <li class="SelectorLI">
-            <a (click)="selectStatus(1)" class="SelectorA" [ngClass]="{'SelectorASEL': statusSelectorNum === 1, 'SelectorAnonSEL' : statusSelectorNum != 1 }">Accepted</a>
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': statusSelectorNum === 1, 'SelectorAnonSEL' : statusSelectorNum != 1 }" >
+              <a (click)="selectStatus(1)" class="SelectorA" >Accepted</a>
+            </div>
+            <canvas #canvasAccepted width="20" height="20"></canvas>
           </li>
-          <li class="SelectorLI">
-            <a (click)="selectStatus(2)" class="SelectorA" [ngClass]="{'SelectorASEL': statusSelectorNum === 2, 'SelectorAnonSEL' : statusSelectorNum != 2 }">Declined</a>
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': statusSelectorNum === 2, 'SelectorAnonSEL' : statusSelectorNum != 2 }" >
+              <a (click)="selectStatus(2)" class="SelectorA" >Declined</a>
+            </div>
+            <canvas #canvasDeclined width="20" height="20"></canvas>
           </li>
         </ul>
 
         <!-- Time Selection Tab -->
         <ul class="SelectorUL">
-          <li class="SelectorLI">
-            <a (click)="selectTransactionTime(1)" class="SelectorA" [ngClass]="{'SelectorASEL': timeSelectorNum === 1, 'SelectorAnonSEL' : timeSelectorNum != 1 }">Upcoming Transactions</a>
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': timeSelectorNum === 1, 'SelectorAnonSEL' : timeSelectorNum != 1 }" >
+              <a (click)="selectTransactionTime(1)" class="SelectorA" >Upcoming Transactions</a>
+            </div>
+            <canvas #canvasUpcoming width="20" height="20"></canvas>
           </li>
-          <li class="SelectorLI">
-            <a (click)="selectTransactionTime(0)" class="SelectorA" [ngClass]="{'SelectorASEL': timeSelectorNum === 0, 'SelectorAnonSEL' : timeSelectorNum != 0 }">Past Transactions</a>
+          <li class="InvisibleLI">
+            <div class="SelectorLI" [ngClass]="{'SelectorASEL': timeSelectorNum === 0, 'SelectorAnonSEL' : timeSelectorNum != 0 }" >
+              <a (click)="selectTransactionTime(0)" class="SelectorA" >Past Transactions</a>
+            </div>
+            <canvas #canvasPast width="20" height="20"></canvas>
           </li>
         </ul>
       </div>
       <div>
-        <ul *ngIf="selectedTransactionList.length > 0" class="DisplayUL">
+        <ul *ngIf="selectedTransactionList.length > 0; else noTransactions" class="DisplayUL">
           <li *ngFor="let item of selectedTransactionList" class="DisplayLI">
             <p>Transaction ID: {{item.job_id}}</p>
             <p>Parent: {{item.job_parent}}</p>
             <p>Sitter: {{item.job_sitter}}</p>
             <p>Details: {{item.job_details}}</p>
-            <p>Created Date: {{item.job_created}}</p>
-            <p>Accepted Date: {{item.job_acceptedDate}}</p>
-            <p>Start Date: {{item.job_start}}</p>
-            <p>End Date: {{item.job_end}}</p>
+            <p>Created Date: {{dateTimeFormatter(item.job_created)}}</p>
+            <p>Accepted Date: {{dateTimeFormatter(item.job_acceptedDate)}}</p>
+            <p>Start Date: {{dateTimeFormatter(item.job_start)}}</p>
+            <p>End Date: {{dateTimeFormatter(item.job_end)}}</p>
             <p>Pay: {{item.job_pay}}</p>
             <p>Transaction Status: {{item.job_status}}</p>
             <div *ngIf="item.job_status == 0 && statusSelectorNum === 0 && jobSelectorNum === 1 && timeSelectorNum === 1">
@@ -58,6 +80,9 @@
             </div>
           </li>
         </ul>
+        <ng-template #noTransactions>
+          <p class="Notice">No Transactions currently within this range!</p>
+        </ng-template>
       </div>
     </div>
   }

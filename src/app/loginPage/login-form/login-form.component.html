@@ -18,7 +18,7 @@
       <div>
         <label class="labelClass labelPassword" for="loginPass">Password</label>
         <input
-        type="text"
+        type="password"
           class="InputField inputPassword"
           name="password"
           placeholder="Your password"
@@ -30,6 +30,12 @@
       @if (authenticationError()) {
         <div class="alert">
           <strong>Failed to sign in!</strong> Invalid email or password.
+          <a class="clickableLink" routerLink="/resetPass">Forgot your password?</a>
+        </div>
+      }
+      @if (userEnabledError()) {
+        <div class="alert">
+          <strong>Warning!</strong> User has been disabled. Contact support if this was unexpected.
         </div>
       }
 

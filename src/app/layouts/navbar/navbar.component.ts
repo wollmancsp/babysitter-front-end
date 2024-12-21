@@ -24,7 +24,7 @@ export default class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
   }
 
   logOut(): void {
